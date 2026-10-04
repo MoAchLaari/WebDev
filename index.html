@@ -3,474 +3,3125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="School project portfolio">
-    <title>Project Nexus</title>
+
+    <title>Web Development I | Project Archive</title>
+    <meta
+        name="description"
+        content="Web Development I school project archive for first and second semester."
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div class="background-grid"></div>
-    <div class="orb orb-one"></div>
-    <div class="orb orb-two"></div>
+    <div class="site-background" aria-hidden="true">
+        <div class="grid-layer"></div>
+        <div class="scanline-layer"></div>
+        <div class="glow glow-one"></div>
+        <div class="glow glow-two"></div>
+    </div>
 
     <header class="topbar">
-        <a href="#" class="brand">
-            <span class="brand-mark">N</span>
-            <span>
-                <strong>PROJECT</strong>
-                <small>NEXUS</small>
-            </span>
+        <a class="brand" href="#">
+            <div class="brand-symbol">
+                <span>W</span>
+            </div>
+
+            <div class="brand-copy">
+                <small>PROJECT ARCHIVE</small>
+                <strong>WEB DEV I</strong>
+            </div>
         </a>
 
-        <nav>
-            <a href="#projects">Projects</a>
-            <a href="#about">About</a>
+        <nav class="desktop-nav" aria-label="Main navigation">
+            <a href="#archive">Archive</a>
+            <a href="#system-info">Info</a>
         </nav>
 
-        <div class="status">
+        <div class="system-status">
             <span class="status-dot"></span>
-            ONLINE
+            SYSTEM ONLINE
         </div>
     </header>
 
     <main>
         <section class="hero">
-            <div class="eyebrow">
-                <span></span>
-                SCHOOL PROJECT ARCHIVE
-            </div>
-
-            <h1>
-                Build.<br>
-                Learn.<br>
-                <span>Deploy.</span>
-            </h1>
-
-            <p class="hero-text">
-                A futuristic dashboard for all of my school projects,
-                separated by semester and easy to search, open and inspect.
-            </p>
-
-            <div class="hero-actions">
-                <a href="#projects" class="primary-button">Explore Projects</a>
-                <button class="secondary-button" id="focusSearch">Search Archive</button>
-            </div>
-
-            <div class="hero-stats">
-                <div>
-                    <strong id="projectCount">0</strong>
-                    <span>Total Projects</span>
+            <div class="hero-copy">
+                <div class="hero-kicker">
+                    <span></span>
+                    WEB DEVELOPMENT I
                 </div>
 
-                <div>
-                    <strong>2</strong>
-                    <span>Semesters</span>
+                <h1>
+                    PROJECT
+                    <span>ARCHIVE</span>
+                </h1>
+
+                <p>
+                    One dashboard for every lab, exercise and assignment.
+                    Search instantly, switch between semesters and inspect the
+                    HTML, CSS and JavaScript of each project.
+                </p>
+
+                <div class="hero-actions">
+                    <a class="primary-action" href="#archive">
+                        Browse Projects
+                        <span>↓</span>
+                    </a>
+
+                    <button class="secondary-action" id="focusSearchBtn" type="button">
+                        Quick Search
+                        <kbd>Ctrl /</kbd>
+                    </button>
+                </div>
+            </div>
+
+            <div class="hero-dashboard">
+                <div class="dashboard-head">
+                    <div>
+                        <span class="mini-dot"></span>
+                        LIVE DATABASE
+                    </div>
+
+                    <span>2025 / 2026</span>
                 </div>
 
-                <div>
-                    <strong>3</strong>
-                    <span>Code Types</span>
+                <div class="dashboard-grid">
+                    <div class="stat-card accent-card">
+                        <span>SEMESTERS</span>
+                        <strong>02</strong>
+                        <small>Academic archive</small>
+                    </div>
+
+                    <div class="stat-card">
+                        <span>LABS</span>
+                        <strong id="labCount">19</strong>
+                        <small>Available sections</small>
+                    </div>
+
+                    <div class="stat-card">
+                        <span>PROJECTS</span>
+                        <strong id="totalLinkCount">76</strong>
+                        <small>Linked exercises</small>
+                    </div>
+
+                    <div class="stat-card">
+                        <span>SOURCE VIEW</span>
+                        <strong>3X</strong>
+                        <small>HTML · CSS · JS</small>
+                    </div>
+                </div>
+
+                <div class="dashboard-line">
+                    <span></span>
                 </div>
             </div>
         </section>
 
-        <section class="projects-section" id="projects">
-            <div class="section-heading">
+        <section class="archive" id="archive">
+            <div class="archive-toolbar">
+                <div class="archive-title">
+                    <p class="section-label">// PROJECT DATABASE</p>
+                    <h2>Explore the archive.</h2>
+                    <p>
+                        Search by lab, assignment or project name.
+                    </p>
+                </div>
+
+                <div class="toolbar-controls">
+                    <label class="search-box" for="searchInput">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M21 21l-4.3-4.3m1.8-5.2a7 7 0 1 1-14 0a7 7 0 0 1 14 0Z"></path>
+                        </svg>
+
+                        <input
+                            id="searchInput"
+                            type="search"
+                            placeholder="Search lab or project..."
+                            autocomplete="off"
+                        >
+
+                        <kbd>Ctrl /</kbd>
+                    </label>
+
+                    <div class="expand-actions">
+                        <button id="openAllBtn" type="button">Open All</button>
+                        <button id="closeAllBtn" type="button">Close All</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="semester-tabs" role="tablist" aria-label="Semester selection">
+                <button
+                    class="semester-tab active"
+                    type="button"
+                    data-target="semester-1"
+                    role="tab"
+                    aria-selected="true"
+                >
+                    <span class="tab-number">01</span>
+
+                    <span class="tab-copy">
+                        <small>CATEGORY</small>
+                        First Semester
+                    </span>
+
+                    <span class="tab-arrow">→</span>
+                </button>
+
+                <button
+                    class="semester-tab"
+                    type="button"
+                    data-target="semester-2"
+                    role="tab"
+                    aria-selected="false"
+                >
+                    <span class="tab-number">02</span>
+
+                    <span class="tab-copy">
+                        <small>CATEGORY</small>
+                        Second Semester
+                    </span>
+
+                    <span class="tab-arrow">→</span>
+                </button>
+            </div>
+
+            <div class="semester-content">
+                
+        <section class="semester-panel active" id="semester-1">
+            <div class="semester-heading">
                 <div>
-                    <p class="section-tag">// PROJECT DATABASE</p>
-                    <h2>Project Archive</h2>
-                    <p>Choose a semester, search by name and open the project or its code.</p>
-                </div>
-
-                <div class="search-box">
-                    <span>⌕</span>
-                    <input
-                        type="text"
-                        id="searchInput"
-                        placeholder="Search projects..."
-                        autocomplete="off"
-                    >
-                    <kbd>/</kbd>
-                </div>
-            </div>
-
-            <div class="semester-tabs">
-                <button class="semester-tab active" data-semester="semester1">
-                    <span>01</span>
-                    First Semester
-                </button>
-
-                <button class="semester-tab" data-semester="semester2">
-                    <span>02</span>
-                    Second Semester
-                </button>
-            </div>
-
-            <div class="semester-panel active" id="semester1">
-                <div class="panel-header">
+                    <span class="semester-number">01</span>
                     <div>
-                        <p>SEMESTER 01</p>
-                        <h3>First Semester</h3>
+                        <p class="section-label">ARCHIVE SECTOR</p>
+                        <h2>First Semester</h2>
                     </div>
-                    <span class="project-counter"></span>
                 </div>
 
-                <div class="project-grid">
-                    <!--
-                    COPY A CARD TO ADD A NEW PROJECT.
-
-                    data-folder:
-                    The folder where that project lives.
-
-                    Expected project files:
-                    index.html
-                    style.css
-                    script.js
-                    -->
-
-                    <article
-                        class="project-card"
-                        data-title="Project One"
-                        data-description="Responsive website made with HTML and CSS."
-                        data-folder="projects/project1"
-                    >
-                        <div class="card-glow"></div>
-
-                        <div class="card-top">
-                            <span class="project-id">PROJECT_001</span>
-                            <span class="project-status">COMPLETE</span>
-                        </div>
-
-                        <div class="project-icon">&lt;/&gt;</div>
-
-                        <h4>Project One</h4>
-
-                        <p>
-                            Responsive website made with HTML and CSS.
-                        </p>
-
-                        <div class="tech-list">
-                            <span>HTML</span>
-                            <span>CSS</span>
-                        </div>
-
-                        <div class="card-actions">
-                            <a
-                                class="open-project"
-                                href="Eerste_Semester/Labo_1/index.html"
-                            >
-                                Open Project
-                                <span>↗</span>
-                            </a>
-
-                            <button class="source-button">
-                                View Code
-                                <span>{ }</span>
-                            </button>
-                        </div>
-                    </article>
-
-                    <article
-                        class="project-card"
-                        data-title="Project Two"
-                        data-description="Interactive JavaScript project with user input."
-                        data-folder="projects/project2"
-                    >
-                        <div class="card-glow"></div>
-
-                        <div class="card-top">
-                            <span class="project-id">PROJECT_002</span>
-                            <span class="project-status">COMPLETE</span>
-                        </div>
-
-                        <div class="project-icon">JS</div>
-
-                        <h4>Project Two</h4>
-
-                        <p>
-                            Interactive JavaScript project with user input.
-                        </p>
-
-                        <div class="tech-list">
-                            <span>HTML</span>
-                            <span>CSS</span>
-                            <span>JavaScript</span>
-                        </div>
-
-                        <div class="card-actions">
-                            <a
-                                class="open-project"
-                                href="projects/project2/index.html"
-                            >
-                                Open Project
-                                <span>↗</span>
-                            </a>
-
-                            <button class="source-button">
-                                View Code
-                                <span>{ }</span>
-                            </button>
-                        </div>
-                    </article>
-
-                    <article
-                        class="project-card"
-                        data-title="Project Three"
-                        data-description="A school assignment focused on layout and navigation."
-                        data-folder="projects/project3"
-                    >
-                        <div class="card-glow"></div>
-
-                        <div class="card-top">
-                            <span class="project-id">PROJECT_003</span>
-                            <span class="project-status">COMPLETE</span>
-                        </div>
-
-                        <div class="project-icon">UI</div>
-
-                        <h4>Project Three</h4>
-
-                        <p>
-                            A school assignment focused on layout and navigation.
-                        </p>
-
-                        <div class="tech-list">
-                            <span>HTML</span>
-                            <span>CSS</span>
-                        </div>
-
-                        <div class="card-actions">
-                            <a
-                                class="open-project"
-                                href="projects/project3/index.html"
-                            >
-                                Open Project
-                                <span>↗</span>
-                            </a>
-
-                            <button class="source-button">
-                                View Code
-                                <span>{ }</span>
-                            </button>
-                        </div>
-                    </article>
+                <div class="semester-total">
+                    <strong>38</strong>
+                    <span>Projects</span>
                 </div>
             </div>
 
-            <div class="semester-panel" id="semester2">
-                <div class="panel-header">
+            <div class="lab-stack">
+                
+            <details class="lab" data-lab="labo 2">
+                <summary>
+                    <div class="lab-title">
+                        <span class="lab-node">NODE 01</span>
+                        <strong>Labo 2</strong>
+                    </div>
+
+                    <div class="lab-summary-right">
+                        <span class="lab-count">13 projects</span>
+                        <span class="lab-chevron" aria-hidden="true"></span>
+                    </div>
+                </summary>
+
+                <ol class="project-list">
+                    
+                    <li class="project-item" data-search="labo 2 opdracht 1">
+                        <div class="project-info">
+                            <span class="project-index">01</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_2/Opdracht_1.html">
+                                    Opdracht 1
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_2/Opdracht_1.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_2/Opdracht_1.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_2/Opdracht_1.html"
+                                data-project-name="Opdracht 1"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 2 opdracht 2">
+                        <div class="project-info">
+                            <span class="project-index">02</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_2/Opdracht_2.html">
+                                    Opdracht 2
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_2/Opdracht_2.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_2/Opdracht_2.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_2/Opdracht_2.html"
+                                data-project-name="Opdracht 2"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 2 opdracht 3">
+                        <div class="project-info">
+                            <span class="project-index">03</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_2/Opdracht_3.html">
+                                    Opdracht 3
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_2/Opdracht_3.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_2/Opdracht_3.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_2/Opdracht_3.html"
+                                data-project-name="Opdracht 3"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 2 opdracht 4">
+                        <div class="project-info">
+                            <span class="project-index">04</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_2/Opdracht_4.html">
+                                    Opdracht 4
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_2/Opdracht_4.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_2/Opdracht_4.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_2/Opdracht_4.html"
+                                data-project-name="Opdracht 4"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 2 opdracht 5">
+                        <div class="project-info">
+                            <span class="project-index">05</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_2/Opdracht_5.html">
+                                    Opdracht 5
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_2/Opdracht_5.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_2/Opdracht_5.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_2/Opdracht_5.html"
+                                data-project-name="Opdracht 5"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 2 opdracht 6">
+                        <div class="project-info">
+                            <span class="project-index">06</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_2/Opdracht_6.html">
+                                    Opdracht 6
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_2/Opdracht_6.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_2/Opdracht_6.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_2/Opdracht_6.html"
+                                data-project-name="Opdracht 6"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 2 opdracht 7">
+                        <div class="project-info">
+                            <span class="project-index">07</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_2/Opdracht_7.html">
+                                    Opdracht 7
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_2/Opdracht_7.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_2/Opdracht_7.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_2/Opdracht_7.html"
+                                data-project-name="Opdracht 7"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 2 opdracht 8">
+                        <div class="project-info">
+                            <span class="project-index">08</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_2/Opdracht_8.html">
+                                    Opdracht 8
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_2/Opdracht_8.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_2/Opdracht_8.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_2/Opdracht_8.html"
+                                data-project-name="Opdracht 8"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 2 opdracht 9">
+                        <div class="project-info">
+                            <span class="project-index">09</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_2/voorbeeld_headings.html">
+                                    Opdracht 9
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_2/voorbeeld_headings.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_2/voorbeeld_headings.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_2/voorbeeld_headings.html"
+                                data-project-name="Opdracht 9"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 2 opdracht 10">
+                        <div class="project-info">
+                            <span class="project-index">10</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_2/Opdracht_10.html">
+                                    Opdracht 10
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_2/Opdracht_10.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_2/Opdracht_10.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_2/Opdracht_10.html"
+                                data-project-name="Opdracht 10"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 2 opdracht 11">
+                        <div class="project-info">
+                            <span class="project-index">11</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_2/Opdracht_11.html">
+                                    Opdracht 11
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_2/Opdracht_11.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_2/Opdracht_11.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_2/Opdracht_11.html"
+                                data-project-name="Opdracht 11"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 2 opdracht 12">
+                        <div class="project-info">
+                            <span class="project-index">12</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_2/Opdracht_12.html">
+                                    Opdracht 12
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_2/Opdracht_12.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_2/Opdracht_12.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_2/Opdracht_12.html"
+                                data-project-name="Opdracht 12"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 2 opdracht 13">
+                        <div class="project-info">
+                            <span class="project-index">13</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_2/Opdracht_13.html">
+                                    Opdracht 13
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_2/Opdracht_13.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_2/Opdracht_13.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_2/Opdracht_13.html"
+                                data-project-name="Opdracht 13"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                </ol>
+            </details>
+        
+            <details class="lab" data-lab="labo 3">
+                <summary>
+                    <div class="lab-title">
+                        <span class="lab-node">NODE 02</span>
+                        <strong>Labo 3</strong>
+                    </div>
+
+                    <div class="lab-summary-right">
+                        <span class="lab-count">7 projects</span>
+                        <span class="lab-chevron" aria-hidden="true"></span>
+                    </div>
+                </summary>
+
+                <ol class="project-list">
+                    
+                    <li class="project-item" data-search="labo 3 opdracht 1">
+                        <div class="project-info">
+                            <span class="project-index">01</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_3/Opdracht_1.html">
+                                    Opdracht 1
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_3/Opdracht_1.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_3/Opdracht_1.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_3/Opdracht_1.html"
+                                data-project-name="Opdracht 1"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 3 opdracht 2">
+                        <div class="project-info">
+                            <span class="project-index">02</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_3/Opdracht_2.html">
+                                    Opdracht 2
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_3/Opdracht_2.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_3/Opdracht_2.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_3/Opdracht_2.html"
+                                data-project-name="Opdracht 2"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 3 opdracht 3">
+                        <div class="project-info">
+                            <span class="project-index">03</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_3/Opdracht_3.html">
+                                    Opdracht 3
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_3/Opdracht_3.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_3/Opdracht_3.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_3/Opdracht_3.html"
+                                data-project-name="Opdracht 3"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 3 persoonelijk pagina">
+                        <div class="project-info">
+                            <span class="project-index">04</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_3/Personelijk_Pagina/Index.html">
+                                    Persoonelijk Pagina
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_3/Personelijk_Pagina/Index.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_3/Personelijk_Pagina/Index.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_3/Personelijk_Pagina/Index.html"
+                                data-project-name="Persoonelijk Pagina"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 3 sementisch elementen">
+                        <div class="project-info">
+                            <span class="project-index">05</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_3/SE/Sementisch_elementen.html">
+                                    Sementisch elementen
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_3/SE/Sementisch_elementen.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_3/SE/Sementisch_elementen.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_3/SE/Sementisch_elementen.html"
+                                data-project-name="Sementisch elementen"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 3 contact">
+                        <div class="project-info">
+                            <span class="project-index">06</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_3/Contact/Contact.html">
+                                    Contact
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_3/Contact/Contact.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_3/Contact/Contact.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_3/Contact/Contact.html"
+                                data-project-name="Contact"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 3 opleidings aanbod">
+                        <div class="project-info">
+                            <span class="project-index">07</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_3/Opleidings_Aanbod/opleidingsaanbod.html">
+                                    Opleidings Aanbod
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_3/Opleidings_Aanbod/opleidingsaanbod.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_3/Opleidings_Aanbod/opleidingsaanbod.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_3/Opleidings_Aanbod/opleidingsaanbod.html"
+                                data-project-name="Opleidings Aanbod"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                </ol>
+            </details>
+        
+            <details class="lab" data-lab="labo 5">
+                <summary>
+                    <div class="lab-title">
+                        <span class="lab-node">NODE 03</span>
+                        <strong>Labo 5</strong>
+                    </div>
+
+                    <div class="lab-summary-right">
+                        <span class="lab-count">1 projects</span>
+                        <span class="lab-chevron" aria-hidden="true"></span>
+                    </div>
+                </summary>
+
+                <ol class="project-list">
+                    
+                    <li class="project-item" data-search="labo 5 voorbeeldpagina met hoofdingen">
+                        <div class="project-info">
+                            <span class="project-index">01</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_5/index.html">
+                                    Voorbeeldpagina met hoofdingen
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_5/index.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_5/index.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_5/index.html"
+                                data-project-name="Voorbeeldpagina met hoofdingen"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                </ol>
+            </details>
+        
+            <details class="lab" data-lab="labo 7">
+                <summary>
+                    <div class="lab-title">
+                        <span class="lab-node">NODE 04</span>
+                        <strong>Labo 7</strong>
+                    </div>
+
+                    <div class="lab-summary-right">
+                        <span class="lab-count">1 projects</span>
+                        <span class="lab-chevron" aria-hidden="true"></span>
+                    </div>
+                </summary>
+
+                <ol class="project-list">
+                    
+                    <li class="project-item" data-search="labo 7 persoonelijk pagina">
+                        <div class="project-info">
+                            <span class="project-index">01</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_7/Personelijk_Pagina/Index.html">
+                                    Persoonelijk Pagina
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_7/Personelijk_Pagina/Index.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_7/Personelijk_Pagina/Index.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_7/Personelijk_Pagina/Index.html"
+                                data-project-name="Persoonelijk Pagina"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                </ol>
+            </details>
+        
+            <details class="lab" data-lab="labo 8">
+                <summary>
+                    <div class="lab-title">
+                        <span class="lab-node">NODE 05</span>
+                        <strong>Labo 8</strong>
+                    </div>
+
+                    <div class="lab-summary-right">
+                        <span class="lab-count">0 projects</span>
+                        <span class="lab-chevron" aria-hidden="true"></span>
+                    </div>
+                </summary>
+
+                <ol class="project-list">
+                    
+                    <li class="project-item project-item-empty" data-search="labo 8 nein">
+                        <div class="project-info">
+                            <span class="project-index">01</span>
+
+                            <div>
+                                <span class="project-name disabled">
+                                    Nein
+                                </span>
+
+                                <span class="project-path">No project link</span>
+                            </div>
+                        </div>
+
+                        <span class="unavailable">Unavailable</span>
+                    </li>
+                
+                </ol>
+            </details>
+        
+            <details class="lab" data-lab="labo 9">
+                <summary>
+                    <div class="lab-title">
+                        <span class="lab-node">NODE 06</span>
+                        <strong>Labo 9</strong>
+                    </div>
+
+                    <div class="lab-summary-right">
+                        <span class="lab-count">1 projects</span>
+                        <span class="lab-chevron" aria-hidden="true"></span>
+                    </div>
+                </summary>
+
+                <ol class="project-list">
+                    
+                    <li class="project-item" data-search="labo 9 positioning of images">
+                        <div class="project-info">
+                            <span class="project-index">01</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_9/index.html">
+                                    Positioning of Images
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_9/index.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_9/index.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_9/index.html"
+                                data-project-name="Positioning of Images"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                </ol>
+            </details>
+        
+            <details class="lab" data-lab="labo 10">
+                <summary>
+                    <div class="lab-title">
+                        <span class="lab-node">NODE 07</span>
+                        <strong>Labo 10</strong>
+                    </div>
+
+                    <div class="lab-summary-right">
+                        <span class="lab-count">5 projects</span>
+                        <span class="lab-chevron" aria-hidden="true"></span>
+                    </div>
+                </summary>
+
+                <ol class="project-list">
+                    
+                    <li class="project-item" data-search="labo 10 homepage">
+                        <div class="project-info">
+                            <span class="project-index">01</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_10/Personelijk_Pagina/Index.html">
+                                    Homepage
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_10/Personelijk_Pagina/Index.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_10/Personelijk_Pagina/Index.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_10/Personelijk_Pagina/Index.html"
+                                data-project-name="Homepage"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 10 media queries">
+                        <div class="project-info">
+                            <span class="project-index">02</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_10/Media_Query/Media_Query.html">
+                                    Media Queries
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_10/Media_Query/Media_Query.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_10/Media_Query/Media_Query.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_10/Media_Query/Media_Query.html"
+                                data-project-name="Media Queries"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 10 oefening 1">
+                        <div class="project-info">
+                            <span class="project-index">03</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_10/Oefening_1/Index.html">
+                                    Oefening 1
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_10/Oefening_1/Index.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_10/Oefening_1/Index.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_10/Oefening_1/Index.html"
+                                data-project-name="Oefening 1"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 10 oefening 2">
+                        <div class="project-info">
+                            <span class="project-index">04</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_10/Oefening_2/Index.html">
+                                    Oefening 2
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_10/Oefening_2/Index.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_10/Oefening_2/Index.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_10/Oefening_2/Index.html"
+                                data-project-name="Oefening 2"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 10 oefening 3">
+                        <div class="project-info">
+                            <span class="project-index">05</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_10/Oefening_3/Index.html">
+                                    Oefening 3
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_10/Oefening_3/Index.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_10/Oefening_3/Index.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_10/Oefening_3/Index.html"
+                                data-project-name="Oefening 3"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                </ol>
+            </details>
+        
+            <details class="lab" data-lab="labo 11">
+                <summary>
+                    <div class="lab-title">
+                        <span class="lab-node">NODE 08</span>
+                        <strong>Labo 11</strong>
+                    </div>
+
+                    <div class="lab-summary-right">
+                        <span class="lab-count">7 projects</span>
+                        <span class="lab-chevron" aria-hidden="true"></span>
+                    </div>
+                </summary>
+
+                <ol class="project-list">
+                    
+                    <li class="project-item" data-search="labo 11 oefening 1">
+                        <div class="project-info">
+                            <span class="project-index">01</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_11/Oefening_1/Index.html">
+                                    Oefening 1
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_11/Oefening_1/Index.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_11/Oefening_1/Index.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_11/Oefening_1/Index.html"
+                                data-project-name="Oefening 1"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 11 oefening 2">
+                        <div class="project-info">
+                            <span class="project-index">02</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_11/Oefening_2/Index.html">
+                                    Oefening 2
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_11/Oefening_2/Index.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_11/Oefening_2/Index.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_11/Oefening_2/Index.html"
+                                data-project-name="Oefening 2"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 11 oefening 3">
+                        <div class="project-info">
+                            <span class="project-index">03</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_11/Oefening_3/Index.html">
+                                    Oefening 3
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_11/Oefening_3/Index.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_11/Oefening_3/Index.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_11/Oefening_3/Index.html"
+                                data-project-name="Oefening 3"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 11 oefening 4">
+                        <div class="project-info">
+                            <span class="project-index">04</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_11/Oefening_4/Index.html">
+                                    Oefening 4
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_11/Oefening_4/Index.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_11/Oefening_4/Index.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_11/Oefening_4/Index.html"
+                                data-project-name="Oefening 4"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 11 oefening 5">
+                        <div class="project-info">
+                            <span class="project-index">05</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_11/Oefening_5/Index.html">
+                                    Oefening 5
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_11/Oefening_5/Index.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_11/Oefening_5/Index.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_11/Oefening_5/Index.html"
+                                data-project-name="Oefening 5"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 11 oefening 6">
+                        <div class="project-info">
+                            <span class="project-index">06</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_11/Oefening_6/Index.html">
+                                    Oefening 6
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_11/Oefening_6/Index.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_11/Oefening_6/Index.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_11/Oefening_6/Index.html"
+                                data-project-name="Oefening 6"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 11 extra">
+                        <div class="project-info">
+                            <span class="project-index">07</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_11/Extra/Index.html">
+                                    Extra
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_11/Extra/Index.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_11/Extra/Index.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_11/Extra/Index.html"
+                                data-project-name="Extra"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                </ol>
+            </details>
+        
+            <details class="lab" data-lab="labo 12">
+                <summary>
+                    <div class="lab-title">
+                        <span class="lab-node">NODE 09</span>
+                        <strong>Labo 12</strong>
+                    </div>
+
+                    <div class="lab-summary-right">
+                        <span class="lab-count">3 projects</span>
+                        <span class="lab-chevron" aria-hidden="true"></span>
+                    </div>
+                </summary>
+
+                <ol class="project-list">
+                    
+                    <li class="project-item" data-search="labo 12 oefening 2">
+                        <div class="project-info">
+                            <span class="project-index">01</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_12/Oefening_2/index.html">
+                                    Oefening 2
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_12/Oefening_2/index.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_12/Oefening_2/index.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_12/Oefening_2/index.html"
+                                data-project-name="Oefening 2"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 12 oefening 3">
+                        <div class="project-info">
+                            <span class="project-index">02</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_12/Oefening_3/index.html">
+                                    Oefening 3
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_12/Oefening_3/index.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_12/Oefening_3/index.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_12/Oefening_3/index.html"
+                                data-project-name="Oefening 3"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 12 oefening 4">
+                        <div class="project-info">
+                            <span class="project-index">03</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_1/Labo_12/Oefening_4/index.html">
+                                    Oefening 4
+                                </a>
+
+                                <span class="project-path">Semester_1/Labo_12/Oefening_4/index.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_1/Labo_12/Oefening_4/index.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_1/Labo_12/Oefening_4/index.html"
+                                data-project-name="Oefening 4"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                </ol>
+            </details>
+        
+            </div>
+        </section>
+    
+
+        <section class="semester-panel " id="semester-2">
+            <div class="semester-heading">
+                <div>
+                    <span class="semester-number">02</span>
                     <div>
-                        <p>SEMESTER 02</p>
-                        <h3>Second Semester</h3>
+                        <p class="section-label">ARCHIVE SECTOR</p>
+                        <h2>Second Semester</h2>
                     </div>
-                    <span class="project-counter"></span>
                 </div>
 
-                <div class="project-grid">
-                    <article
-                        class="project-card"
-                        data-title="Project Four"
-                        data-description="Second semester project with a more advanced layout."
-                        data-folder="projects/project4"
-                    >
-                        <div class="card-glow"></div>
-
-                        <div class="card-top">
-                            <span class="project-id">PROJECT_004</span>
-                            <span class="project-status">COMPLETE</span>
-                        </div>
-
-                        <div class="project-icon">WEB</div>
-
-                        <h4>Project Four</h4>
-
-                        <p>
-                            Second semester project with a more advanced layout.
-                        </p>
-
-                        <div class="tech-list">
-                            <span>HTML</span>
-                            <span>CSS</span>
-                            <span>JavaScript</span>
-                        </div>
-
-                        <div class="card-actions">
-                            <a
-                                class="open-project"
-                                href="projects/project4/index.html"
-                            >
-                                Open Project
-                                <span>↗</span>
-                            </a>
-
-                            <button class="source-button">
-                                View Code
-                                <span>{ }</span>
-                            </button>
-                        </div>
-                    </article>
-
-                    <article
-                        class="project-card"
-                        data-title="Project Five"
-                        data-description="A JavaScript based assignment with dynamic content."
-                        data-folder="projects/project5"
-                    >
-                        <div class="card-glow"></div>
-
-                        <div class="card-top">
-                            <span class="project-id">PROJECT_005</span>
-                            <span class="project-status">COMPLETE</span>
-                        </div>
-
-                        <div class="project-icon">JS</div>
-
-                        <h4>Project Five</h4>
-
-                        <p>
-                            A JavaScript based assignment with dynamic content.
-                        </p>
-
-                        <div class="tech-list">
-                            <span>JavaScript</span>
-                            <span>DOM</span>
-                        </div>
-
-                        <div class="card-actions">
-                            <a
-                                class="open-project"
-                                href="projects/project5/index.html"
-                            >
-                                Open Project
-                                <span>↗</span>
-                            </a>
-
-                            <button class="source-button">
-                                View Code
-                                <span>{ }</span>
-                            </button>
-                        </div>
-                    </article>
-
-                    <article
-                        class="project-card"
-                        data-title="Project Six"
-                        data-description="Final project combining HTML, CSS and JavaScript."
-                        data-folder="projects/project6"
-                    >
-                        <div class="card-glow"></div>
-
-                        <div class="card-top">
-                            <span class="project-id">PROJECT_006</span>
-                            <span class="project-status">COMPLETE</span>
-                        </div>
-
-                        <div class="project-icon">FX</div>
-
-                        <h4>Project Six</h4>
-
-                        <p>
-                            Final project combining HTML, CSS and JavaScript.
-                        </p>
-
-                        <div class="tech-list">
-                            <span>HTML</span>
-                            <span>CSS</span>
-                            <span>JavaScript</span>
-                        </div>
-
-                        <div class="card-actions">
-                            <a
-                                class="open-project"
-                                href="projects/project6/index.html"
-                            >
-                                Open Project
-                                <span>↗</span>
-                            </a>
-
-                            <button class="source-button">
-                                View Code
-                                <span>{ }</span>
-                            </button>
-                        </div>
-                    </article>
+                <div class="semester-total">
+                    <strong>38</strong>
+                    <span>Projects</span>
                 </div>
             </div>
 
-            <div class="empty-state" id="emptyState">
-                <div>404</div>
-                <h3>No project found</h3>
-                <p>Try another search.</p>
+            <div class="lab-stack">
+                
+            <details class="lab" data-lab="labo 13">
+                <summary>
+                    <div class="lab-title">
+                        <span class="lab-node">NODE 01</span>
+                        <strong>Labo 13</strong>
+                    </div>
+
+                    <div class="lab-summary-right">
+                        <span class="lab-count">2 projects</span>
+                        <span class="lab-chevron" aria-hidden="true"></span>
+                    </div>
+                </summary>
+
+                <ol class="project-list">
+                    
+                    <li class="project-item" data-search="labo 13 leeg project">
+                        <div class="project-info">
+                            <span class="project-index">01</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_13/Opdracht_Leeg_Project/Leeg_Projecr.html">
+                                    Leeg Project
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_13/Opdracht_Leeg_Project/Leeg_Projecr.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_13/Opdracht_Leeg_Project/Leeg_Projecr.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_13/Opdracht_Leeg_Project/Leeg_Projecr.html"
+                                data-project-name="Leeg Project"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 13 rekenmachine">
+                        <div class="project-info">
+                            <span class="project-index">02</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_13/RekenMachine/Rekenmachine.html">
+                                    Rekenmachine
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_13/RekenMachine/Rekenmachine.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_13/RekenMachine/Rekenmachine.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_13/RekenMachine/Rekenmachine.html"
+                                data-project-name="Rekenmachine"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                </ol>
+            </details>
+        
+            <details class="lab" data-lab="labo 14">
+                <summary>
+                    <div class="lab-title">
+                        <span class="lab-node">NODE 02</span>
+                        <strong>Labo 14</strong>
+                    </div>
+
+                    <div class="lab-summary-right">
+                        <span class="lab-count">4 projects</span>
+                        <span class="lab-chevron" aria-hidden="true"></span>
+                    </div>
+                </summary>
+
+                <ol class="project-list">
+                    
+                    <li class="project-item" data-search="labo 14 oefening 1">
+                        <div class="project-info">
+                            <span class="project-index">01</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_14/Oefening_1/Oefening_1.html">
+                                    Oefening 1
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_14/Oefening_1/Oefening_1.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_14/Oefening_1/Oefening_1.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_14/Oefening_1/Oefening_1.html"
+                                data-project-name="Oefening 1"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 14 oefening 3">
+                        <div class="project-info">
+                            <span class="project-index">02</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_14/Oefening_3/Oefening_3.html">
+                                    Oefening 3
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_14/Oefening_3/Oefening_3.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_14/Oefening_3/Oefening_3.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_14/Oefening_3/Oefening_3.html"
+                                data-project-name="Oefening 3"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 14 oefening 5">
+                        <div class="project-info">
+                            <span class="project-index">03</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_14/Oefening_5/Oefening_5.html">
+                                    Oefening 5
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_14/Oefening_5/Oefening_5.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_14/Oefening_5/Oefening_5.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_14/Oefening_5/Oefening_5.html"
+                                data-project-name="Oefening 5"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 14 oefening 6">
+                        <div class="project-info">
+                            <span class="project-index">04</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_14/Oefening_6/Oefening_6.html">
+                                    Oefening 6
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_14/Oefening_6/Oefening_6.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_14/Oefening_6/Oefening_6.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_14/Oefening_6/Oefening_6.html"
+                                data-project-name="Oefening 6"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                </ol>
+            </details>
+        
+            <details class="lab" data-lab="labo 15">
+                <summary>
+                    <div class="lab-title">
+                        <span class="lab-node">NODE 03</span>
+                        <strong>Labo 15</strong>
+                    </div>
+
+                    <div class="lab-summary-right">
+                        <span class="lab-count">5 projects</span>
+                        <span class="lab-chevron" aria-hidden="true"></span>
+                    </div>
+                </summary>
+
+                <ol class="project-list">
+                    
+                    <li class="project-item" data-search="labo 15 oefening 1">
+                        <div class="project-info">
+                            <span class="project-index">01</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_15/Oefening_1/Oefening_1.html">
+                                    Oefening 1
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_15/Oefening_1/Oefening_1.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_15/Oefening_1/Oefening_1.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_15/Oefening_1/Oefening_1.html"
+                                data-project-name="Oefening 1"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 15 oefening 2">
+                        <div class="project-info">
+                            <span class="project-index">02</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_15/Oefening_2/Oefening_2.html">
+                                    Oefening 2
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_15/Oefening_2/Oefening_2.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_15/Oefening_2/Oefening_2.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_15/Oefening_2/Oefening_2.html"
+                                data-project-name="Oefening 2"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 15 colorpicker">
+                        <div class="project-info">
+                            <span class="project-index">03</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_15/Colorpicker/Colorpicker.html">
+                                    Colorpicker
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_15/Colorpicker/Colorpicker.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_15/Colorpicker/Colorpicker.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_15/Colorpicker/Colorpicker.html"
+                                data-project-name="Colorpicker"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 15 oefening 4">
+                        <div class="project-info">
+                            <span class="project-index">04</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_15/Oefening_4/Oefening_4.html">
+                                    Oefening 4
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_15/Oefening_4/Oefening_4.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_15/Oefening_4/Oefening_4.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_15/Oefening_4/Oefening_4.html"
+                                data-project-name="Oefening 4"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 15 oefening 5">
+                        <div class="project-info">
+                            <span class="project-index">05</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_15/Oefening_5/Oefening_5.html">
+                                    Oefening 5
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_15/Oefening_5/Oefening_5.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_15/Oefening_5/Oefening_5.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_15/Oefening_5/Oefening_5.html"
+                                data-project-name="Oefening 5"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                </ol>
+            </details>
+        
+            <details class="lab" data-lab="labo 16">
+                <summary>
+                    <div class="lab-title">
+                        <span class="lab-node">NODE 04</span>
+                        <strong>Labo 16</strong>
+                    </div>
+
+                    <div class="lab-summary-right">
+                        <span class="lab-count">4 projects</span>
+                        <span class="lab-chevron" aria-hidden="true"></span>
+                    </div>
+                </summary>
+
+                <ol class="project-list">
+                    
+                    <li class="project-item" data-search="labo 16 oefening 1">
+                        <div class="project-info">
+                            <span class="project-index">01</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_16/Oefening_1/Oefening_1.html">
+                                    Oefening 1
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_16/Oefening_1/Oefening_1.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_16/Oefening_1/Oefening_1.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_16/Oefening_1/Oefening_1.html"
+                                data-project-name="Oefening 1"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 16 oefening 2">
+                        <div class="project-info">
+                            <span class="project-index">02</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_16/Oefening_2/Oefening_2.html">
+                                    Oefening 2
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_16/Oefening_2/Oefening_2.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_16/Oefening_2/Oefening_2.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_16/Oefening_2/Oefening_2.html"
+                                data-project-name="Oefening 2"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 16 oefening 3">
+                        <div class="project-info">
+                            <span class="project-index">03</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_16/Oefening_3/Oefening_3.html">
+                                    Oefening 3
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_16/Oefening_3/Oefening_3.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_16/Oefening_3/Oefening_3.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_16/Oefening_3/Oefening_3.html"
+                                data-project-name="Oefening 3"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 16 oefening 4">
+                        <div class="project-info">
+                            <span class="project-index">04</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_16/Oefening_4/Oefening_4.html">
+                                    Oefening 4
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_16/Oefening_4/Oefening_4.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_16/Oefening_4/Oefening_4.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_16/Oefening_4/Oefening_4.html"
+                                data-project-name="Oefening 4"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                </ol>
+            </details>
+        
+            <details class="lab" data-lab="labo 17">
+                <summary>
+                    <div class="lab-title">
+                        <span class="lab-node">NODE 05</span>
+                        <strong>Labo 17</strong>
+                    </div>
+
+                    <div class="lab-summary-right">
+                        <span class="lab-count">5 projects</span>
+                        <span class="lab-chevron" aria-hidden="true"></span>
+                    </div>
+                </summary>
+
+                <ol class="project-list">
+                    
+                    <li class="project-item" data-search="labo 17 trigrams">
+                        <div class="project-info">
+                            <span class="project-index">01</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_17/Trigrams/Trigrams.html">
+                                    Trigrams
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_17/Trigrams/Trigrams.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_17/Trigrams/Trigrams.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_17/Trigrams/Trigrams.html"
+                                data-project-name="Trigrams"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 17 de en het">
+                        <div class="project-info">
+                            <span class="project-index">02</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_17/De_En_Het/De_En_Het.html">
+                                    De En Het
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_17/De_En_Het/De_En_Het.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_17/De_En_Het/De_En_Het.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_17/De_En_Het/De_En_Het.html"
+                                data-project-name="De En Het"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 17 gemeentes">
+                        <div class="project-info">
+                            <span class="project-index">03</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_17/Gemeentes/Gemeentes.html">
+                                    Gemeentes
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_17/Gemeentes/Gemeentes.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_17/Gemeentes/Gemeentes.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_17/Gemeentes/Gemeentes.html"
+                                data-project-name="Gemeentes"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 17 formwaarden">
+                        <div class="project-info">
+                            <span class="project-index">04</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_17/Formwaarden/Formwaarden.html">
+                                    Formwaarden
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_17/Formwaarden/Formwaarden.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_17/Formwaarden/Formwaarden.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_17/Formwaarden/Formwaarden.html"
+                                data-project-name="Formwaarden"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 17 formvalidaties">
+                        <div class="project-info">
+                            <span class="project-index">05</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_17/Formvalidaties/Formvalidaties.html">
+                                    Formvalidaties
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_17/Formvalidaties/Formvalidaties.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_17/Formvalidaties/Formvalidaties.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_17/Formvalidaties/Formvalidaties.html"
+                                data-project-name="Formvalidaties"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                </ol>
+            </details>
+        
+            <details class="lab" data-lab="labo 18">
+                <summary>
+                    <div class="lab-title">
+                        <span class="lab-node">NODE 06</span>
+                        <strong>Labo 18</strong>
+                    </div>
+
+                    <div class="lab-summary-right">
+                        <span class="lab-count">7 projects</span>
+                        <span class="lab-chevron" aria-hidden="true"></span>
+                    </div>
+                </summary>
+
+                <ol class="project-list">
+                    
+                    <li class="project-item" data-search="labo 18 event">
+                        <div class="project-info">
+                            <span class="project-index">01</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_18/Demo/Events/index.html">
+                                    Event
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_18/Demo/Events/index.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_18/Demo/Events/index.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_18/Demo/Events/index.html"
+                                data-project-name="Event"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 18 event bubbling">
+                        <div class="project-info">
+                            <span class="project-index">02</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_18/Demo/Event_Bubbling/index.html">
+                                    Event Bubbling
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_18/Demo/Event_Bubbling/index.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_18/Demo/Event_Bubbling/index.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_18/Demo/Event_Bubbling/index.html"
+                                data-project-name="Event Bubbling"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 18 keyword">
+                        <div class="project-info">
+                            <span class="project-index">03</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_18/Demo/Keyword/index.html">
+                                    Keyword
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_18/Demo/Keyword/index.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_18/Demo/Keyword/index.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_18/Demo/Keyword/index.html"
+                                data-project-name="Keyword"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 18 oefening 1">
+                        <div class="project-info">
+                            <span class="project-index">04</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_18/Oefening_1/Index.html">
+                                    Oefening 1
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_18/Oefening_1/Index.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_18/Oefening_1/Index.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_18/Oefening_1/Index.html"
+                                data-project-name="Oefening 1"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 18 oefening 2">
+                        <div class="project-info">
+                            <span class="project-index">05</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_18/Oefening_2/Index.html">
+                                    Oefening 2
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_18/Oefening_2/Index.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_18/Oefening_2/Index.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_18/Oefening_2/Index.html"
+                                data-project-name="Oefening 2"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 18 oefening 3">
+                        <div class="project-info">
+                            <span class="project-index">06</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_18/Oefening_3/Index.html">
+                                    Oefening 3
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_18/Oefening_3/Index.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_18/Oefening_3/Index.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_18/Oefening_3/Index.html"
+                                data-project-name="Oefening 3"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 18 color picker">
+                        <div class="project-info">
+                            <span class="project-index">07</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_18/Colorpicker_2/Colorpicker.html">
+                                    Color Picker
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_18/Colorpicker_2/Colorpicker.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_18/Colorpicker_2/Colorpicker.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_18/Colorpicker_2/Colorpicker.html"
+                                data-project-name="Color Picker"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                </ol>
+            </details>
+        
+            <details class="lab" data-lab="labo 19">
+                <summary>
+                    <div class="lab-title">
+                        <span class="lab-node">NODE 07</span>
+                        <strong>Labo 19</strong>
+                    </div>
+
+                    <div class="lab-summary-right">
+                        <span class="lab-count">4 projects</span>
+                        <span class="lab-chevron" aria-hidden="true"></span>
+                    </div>
+                </summary>
+
+                <ol class="project-list">
+                    
+                    <li class="project-item" data-search="labo 19 sprites">
+                        <div class="project-info">
+                            <span class="project-index">01</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_19/Demo_sprites/Demo%20sprites/index.html">
+                                    Sprites
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_19/Demo_sprites/Demo%20sprites/index.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_19/Demo_sprites/Demo%20sprites/index.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_19/Demo_sprites/Demo%20sprites/index.html"
+                                data-project-name="Sprites"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 19 sprites animatie">
+                        <div class="project-info">
+                            <span class="project-index">02</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_19/Demo_sprites/Demo%20sprites%20animatie/index.html">
+                                    Sprites Animatie
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_19/Demo_sprites/Demo%20sprites%20animatie/index.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_19/Demo_sprites/Demo%20sprites%20animatie/index.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_19/Demo_sprites/Demo%20sprites%20animatie/index.html"
+                                data-project-name="Sprites Animatie"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 19 hit an object">
+                        <div class="project-info">
+                            <span class="project-index">03</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_19/Hit_an_object_Startproject/index.html">
+                                    Hit an Object
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_19/Hit_an_object_Startproject/index.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_19/Hit_an_object_Startproject/index.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_19/Hit_an_object_Startproject/index.html"
+                                data-project-name="Hit an Object"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 19 matching game">
+                        <div class="project-info">
+                            <span class="project-index">04</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_19/Matching_Game/index.html">
+                                    Matching Game
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_19/Matching_Game/index.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_19/Matching_Game/index.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_19/Matching_Game/index.html"
+                                data-project-name="Matching Game"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                </ol>
+            </details>
+        
+            <details class="lab" data-lab="labo 20">
+                <summary>
+                    <div class="lab-title">
+                        <span class="lab-node">NODE 08</span>
+                        <strong>Labo 20</strong>
+                    </div>
+
+                    <div class="lab-summary-right">
+                        <span class="lab-count">3 projects</span>
+                        <span class="lab-chevron" aria-hidden="true"></span>
+                    </div>
+                </summary>
+
+                <ol class="project-list">
+                    
+                    <li class="project-item" data-search="labo 20 contact manager">
+                        <div class="project-info">
+                            <span class="project-index">01</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_20/Contactmanager/index.html">
+                                    Contact Manager
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_20/Contactmanager/index.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_20/Contactmanager/index.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_20/Contactmanager/index.html"
+                                data-project-name="Contact Manager"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 20 oefening 1">
+                        <div class="project-info">
+                            <span class="project-index">02</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_20/Oefening%201/index.html">
+                                    Oefening 1
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_20/Oefening%201/index.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_20/Oefening%201/index.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_20/Oefening%201/index.html"
+                                data-project-name="Oefening 1"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 20 sprites">
+                        <div class="project-info">
+                            <span class="project-index">03</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_20/Oefening_2/index.html">
+                                    Sprites
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_20/Oefening_2/index.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_20/Oefening_2/index.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_20/Oefening_2/index.html"
+                                data-project-name="Sprites"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                </ol>
+            </details>
+        
+            <details class="lab" data-lab="labo 21">
+                <summary>
+                    <div class="lab-title">
+                        <span class="lab-node">NODE 09</span>
+                        <strong>Labo 21</strong>
+                    </div>
+
+                    <div class="lab-summary-right">
+                        <span class="lab-count">2 projects</span>
+                        <span class="lab-chevron" aria-hidden="true"></span>
+                    </div>
+                </summary>
+
+                <ol class="project-list">
+                    
+                    <li class="project-item" data-search="labo 21 colorpicker pro">
+                        <div class="project-info">
+                            <span class="project-index">01</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_21/Colorpicker_Pro/ColorpickerPRO.html">
+                                    Colorpicker Pro
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_21/Colorpicker_Pro/ColorpickerPRO.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_21/Colorpicker_Pro/ColorpickerPRO.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_21/Colorpicker_Pro/ColorpickerPRO.html"
+                                data-project-name="Colorpicker Pro"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 21 vraaglijst">
+                        <div class="project-info">
+                            <span class="project-index">02</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_21/Vraaglijst/vraaglist.html">
+                                    Vraaglijst
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_21/Vraaglijst/vraaglist.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_21/Vraaglijst/vraaglist.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_21/Vraaglijst/vraaglist.html"
+                                data-project-name="Vraaglijst"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                </ol>
+            </details>
+        
+            <details class="lab" data-lab="labo 22">
+                <summary>
+                    <div class="lab-title">
+                        <span class="lab-node">NODE 10</span>
+                        <strong>Labo 22</strong>
+                    </div>
+
+                    <div class="lab-summary-right">
+                        <span class="lab-count">2 projects</span>
+                        <span class="lab-chevron" aria-hidden="true"></span>
+                    </div>
+                </summary>
+
+                <ol class="project-list">
+                    
+                    <li class="project-item" data-search="labo 22 zonder ai">
+                        <div class="project-info">
+                            <span class="project-index">01</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_22/Pure/StartPage.html">
+                                    Zonder AI
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_22/Pure/StartPage.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_22/Pure/StartPage.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_22/Pure/StartPage.html"
+                                data-project-name="Zonder AI"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                    <li class="project-item" data-search="labo 22 met ai">
+                        <div class="project-info">
+                            <span class="project-index">02</span>
+
+                            <div>
+                                <a class="project-name" href="Semester_2/Labo_22/With_AI/StartPage.html">
+                                    Met AI
+                                </a>
+
+                                <span class="project-path">Semester_2/Labo_22/With_AI/StartPage.html</span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a class="project-open" href="Semester_2/Labo_22/With_AI/StartPage.html" title="Open project">
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_22/With_AI/StartPage.html"
+                                data-project-name="Met AI"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+                
+                </ol>
+            </details>
+        
+            </div>
+        </section>
+    
+            </div>
+
+            <div class="empty-state" id="emptyState" hidden>
+                <span>NO_MATCH</span>
+                <h3>No projects found.</h3>
+                <p>Try a different search term.</p>
             </div>
         </section>
 
-        <section class="about-section" id="about">
-            <div class="about-number">02</div>
+        <section class="system-info" id="system-info">
+            <div class="info-index">03</div>
 
             <div>
-                <p class="section-tag">// ABOUT THIS PAGE</p>
-                <h2>One place for everything.</h2>
+                <p class="section-label">// SYSTEM INFO</p>
+                <h2>Built to find work fast.</h2>
+
                 <p>
-                    This page is my central school project archive. Every card links to
-                    a project, and the source button lets the HTML, CSS and JavaScript
-                    be viewed directly without leaving this page.
+                    Projects remain grouped by lab, but the archive can now be
+                    searched instantly. Every linked project also has a code
+                    viewer that tries to load its HTML, CSS and JavaScript
+                    directly from GitHub Pages.
                 </p>
+            </div>
+
+            <div class="info-list">
+                <span>SEMESTER FILTER</span>
+                <span>LIVE SEARCH</span>
+                <span>SOURCE VIEWER</span>
+                <span>MOBILE READY</span>
             </div>
         </section>
     </main>
 
     <footer>
-        <span>PROJECT NEXUS</span>
-        <span>School Project Archive</span>
-        <span id="year"></span>
+        <span>WEB DEVELOPMENT I</span>
+        <span>Mohammed Achraf Laari</span>
+        <span id="currentYear"></span>
     </footer>
 
     <!-- SOURCE CODE VIEWER -->
-    <div class="code-modal" id="codeModal" aria-hidden="true">
+    <div class="source-modal" id="sourceModal" aria-hidden="true">
         <div class="modal-backdrop" data-close-modal></div>
 
-        <div class="modal-window">
-            <div class="modal-topbar">
-                <div class="window-controls">
+        <section class="source-window" aria-label="Project source code viewer">
+            <header class="source-header">
+                <div class="window-dots" aria-hidden="true">
                     <span></span>
                     <span></span>
                     <span></span>
                 </div>
 
-                <div>
-                    <small>SOURCE VIEWER</small>
-                    <strong id="modalProjectTitle">Project</strong>
+                <div class="source-title">
+                    <small>SOURCE INSPECTOR</small>
+                    <strong id="sourceProjectName">Project</strong>
                 </div>
 
-                <button class="close-modal" data-close-modal>×</button>
-            </div>
+                <button
+                    class="modal-close"
+                    type="button"
+                    data-close-modal
+                    aria-label="Close source viewer"
+                >
+                    ×
+                </button>
+            </header>
 
-            <div class="code-tabs">
-                <button class="code-tab active" data-file="index.html">
+            <div class="source-tabs">
+                <button class="source-tab active" type="button" data-source-type="html">
                     HTML
                 </button>
 
-                <button class="code-tab" data-file="style.css">
+                <button class="source-tab" type="button" data-source-type="css">
                     CSS
                 </button>
 
-                <button class="code-tab" data-file="script.js">
-                    JS
+                <button class="source-tab" type="button" data-source-type="js">
+                    JavaScript
                 </button>
 
-                <button class="copy-code" id="copyCode">
+                <button class="copy-button" id="copyCodeBtn" type="button">
                     Copy Code
                 </button>
             </div>
 
-            <div class="code-file-path" id="codeFilePath"></div>
-
-            <div class="code-area">
-                <div class="line-numbers" id="lineNumbers"></div>
-
-                <pre><code id="codeDisplay">Loading...</code></pre>
+            <div class="source-path" id="sourcePath">
+                Waiting for project...
             </div>
-        </div>
+
+            <div class="code-shell">
+                <div class="line-numbers" id="lineNumbers"></div>
+                <pre><code id="sourceCode">Select a project to view its source.</code></pre>
+            </div>
+        </section>
     </div>
 
     <script src="script.js"></script>
