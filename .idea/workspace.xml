@@ -5,6 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="53e2a2c8-7cd2-4748-b6c6-68cdda3ee1c5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Eerste_Semester/Labo_1/Oefening_1/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Eerste_Semester/Labo_1/index.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -64,6 +67,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\demon\Downloads\School\WebDevelopment\Eerste_Semester" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -79,7 +87,8 @@
       <option name="presentableId" value="Default" />
       <updated>1791120119666</updated>
       <workItem from="1791120121007" duration="1912000" />
-      <workItem from="1791124173285" duration="1022000" />
+      <workItem from="1791124173285" duration="1815000" />
+      <workItem from="1791126340537" duration="343000" />
     </task>
     <servers />
   </component>

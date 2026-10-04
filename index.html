@@ -29,7 +29,6 @@
 
         <div class="top-search">
             <span>⌕</span>
-
             <input
                 id="searchInput"
                 type="search"
@@ -57,8 +56,6 @@
                     <button id="closeAllBtn" type="button">Close All</button>
                 </div>
             </div>
-
-
             <div class="semester-tabs">
                 <button
                     class="semester-tab active"
@@ -80,10 +77,6 @@
             </div>
 
 
-            <!-- =========================================================
-                 FIRST SEMESTER
-            ========================================================== -->
-
             <section class="semester active" id="semester1">
 
                 <div class="semester-header">
@@ -97,50 +90,92 @@
 
 
                 <div class="lab-list">
-
-                    <!--
-                    =====================================================
-                    COPY THIS TO ADD A NEW LABO
-                    =====================================================
-
                     <details class="lab">
                         <summary>Labo 1</summary>
 
                         <div class="projects">
-                            <a href="Semester_1/Labo_1/Oefening_1/index.html">
+                            <a href="Eerste_Semester/Labo_1/Oefening_1/index.html">
                                 Oefening 1
-                            </a>
-
-                            <a href="Semester_1/Labo_1/Oefening_2/index.html">
-                                Oefening 2
                             </a>
                         </div>
                     </details>
 
-                    THAT IS ALL YOU NEED.
+                    <details class="lab">
+                        <summary>Labo 2</summary>
 
-                    - Change "Labo 1"
-                    - Change the project names
-                    - Change the href links
-                    - Add more <a> links if needed
+                        <div class="projects">
+                            <a href="Eerste_Semester/Labo_2/Opdracht_1.html">
+                                Oefening 1
+                            </a>
 
-                    JavaScript automatically adds:
-                    - Project numbers
-                    - Open buttons
-                    - Code buttons
-                    - Project counts
-                    =====================================================
+                            <a href="Eerste_Semester/Labo_2/Opdracht_2.html">
+                                Oefening 2
+                            </a>
+
+                            <a href="Eerste_Semester/Labo_2/Opdracht_3.html">
+                                Oefening 3
+                            </a>
+
+                            <a href="Eerste_Semester/Labo_2/Opdracht_4.html">
+                                Oefening 4
+                            </a>
+
+                            <a href="Eerste_Semester/Labo_2/Opdracht_5.html">
+                                Oefening 5
+                            </a>
+
+                            <a href="Eerste_Semester/Labo_2/Opdracht_6.html">
+                                Oefening 6
+                            </a>
+
+                            <a href="Eerste_Semester/Labo_2/Opdracht_7.html">
+                                Oefening 7
+                            </a>
+
+                            <a href="Eerste_Semester/Labo_2/Opdracht_8.html">
+                                Oefening 8
+                            </a>
+
+                            <a href="Eerste_Semester/Labo_2/voorbeeld_headings.html">
+                                Oefening 9
+                            </a>
+
+                            <a href="Eerste_Semester/Labo_2/Opdracht_10.html">
+                                Oefening 10
+                            </a>
+
+                            <a href="Eerste_Semester/Labo_2/Opdracht_11.html">
+                                Oefening 11
+                            </a>
+
+                            <a href="Eerste_Semester/Labo_2/Opdracht_12.html">
+                                Oefening 12
+                            </a>
+
+                            <a href="Eerste_Semester/Labo_2/Opdracht_13.html">
+                                Oefening 13
+                            </a>
+                        </div>
+                    </details>
+                    <!--
+                    <details class="lab">
+                        <summary>Labo 1</summary>
+
+                        <div class="projects">
+                            <a href="Eerste_Semester/Labo_1/index.html">
+                                Oefening 1
+                            </a>
+
+                            <a href="Eerste_Semester/Labo_1/Oefening_2/index.html">
+                                Oefening 2
+                            </a>
+                        </div>
+                    </details>
                     -->
 
                 </div>
 
             </section>
-
-
-            <!-- =========================================================
-                 SECOND SEMESTER
-            ========================================================== -->
-
             <section class="semester" id="semester2">
 
                 <div class="semester-header">
@@ -156,10 +191,6 @@
                 <div class="lab-list">
 
                     <!--
-                    =====================================================
-                    COPY THIS TO ADD A NEW LABO
-                    =====================================================
-
                     <details class="lab">
                         <summary>Labo 13</summary>
 
@@ -173,16 +204,6 @@
                             </a>
                         </div>
                     </details>
-
-                    THAT IS ALL YOU NEED.
-
-                    - Change "Labo 13"
-                    - Change the project names
-                    - Change the href links
-                    - Add more <a> links if needed
-
-                    JavaScript automatically adds everything else.
-                    =====================================================
                     -->
 
                 </div>
@@ -200,18 +221,10 @@
     </main>
 
 
-    <!-- =============================================================
-         SOURCE CODE VIEWER
-    ============================================================== -->
-
     <div class="code-modal" id="codeModal" aria-hidden="true">
-
         <div class="modal-background" data-close-modal></div>
-
         <div class="code-window">
-
             <div class="code-window-header">
-
                 <div class="window-dots">
                     <span></span>
                     <span></span>
@@ -232,8 +245,6 @@
                 </button>
 
             </div>
-
-
             <div class="code-tabs">
 
                 <button
@@ -276,20 +287,15 @@
                 id="codePath"
             ></div>
 
-
             <div class="code-area">
 
                 <div
                     class="line-numbers"
                     id="lineNumbers"
                 ></div>
-
                 <pre><code id="codeDisplay"></code></pre>
-
             </div>
-
         </div>
-
     </div>
 
 
