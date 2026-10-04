@@ -3,224 +3,476 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>My Project Hub</title>
-
+    <meta name="description" content="School project portfolio">
+    <title>Project Nexus</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <div class="background-grid"></div>
+    <div class="orb orb-one"></div>
+    <div class="orb orb-two"></div>
 
-    <header>
-        <div class="navbar">
-            <a href="index.html" class="logo">ProjectHub</a>
+    <header class="topbar">
+        <a href="#" class="brand">
+            <span class="brand-mark">N</span>
+            <span>
+                <strong>PROJECT</strong>
+                <small>NEXUS</small>
+            </span>
+        </a>
 
-            <nav>
-                <a href="#projects">Projects</a>
-                <a href="#about">About</a>
-            </nav>
+        <nav>
+            <a href="#projects">Projects</a>
+            <a href="#about">About</a>
+        </nav>
+
+        <div class="status">
+            <span class="status-dot"></span>
+            ONLINE
         </div>
     </header>
 
-
     <main>
-
         <section class="hero">
-            <p class="small-title">SCHOOL PROJECT COLLECTION</p>
+            <div class="eyebrow">
+                <span></span>
+                SCHOOL PROJECT ARCHIVE
+            </div>
 
-            <h1>My Projects</h1>
+            <h1>
+                Build.<br>
+                Learn.<br>
+                <span>Deploy.</span>
+            </h1>
 
             <p class="hero-text">
-                A simple place where I keep all of my school projects.
-                Use the search bar or filters to quickly find what you need.
+                A futuristic dashboard for all of my school projects,
+                separated by semester and easy to search, open and inspect.
             </p>
 
-            <div class="search-box">
-                <input
-                    type="text"
-                    id="searchInput"
-                    placeholder="Search for a project..."
-                >
+            <div class="hero-actions">
+                <a href="#projects" class="primary-button">Explore Projects</a>
+                <button class="secondary-button" id="focusSearch">Search Archive</button>
             </div>
 
-            <div class="stats">
-                <p><strong id="projectCount">0</strong> Projects</p>
-                <p><strong id="categoryCount">0</strong> Categories</p>
+            <div class="hero-stats">
+                <div>
+                    <strong id="projectCount">0</strong>
+                    <span>Total Projects</span>
+                </div>
+
+                <div>
+                    <strong>2</strong>
+                    <span>Semesters</span>
+                </div>
+
+                <div>
+                    <strong>3</strong>
+                    <span>Code Types</span>
+                </div>
             </div>
         </section>
-
 
         <section class="projects-section" id="projects">
-
-            <div class="section-top">
+            <div class="section-heading">
                 <div>
-                    <p class="small-title">PROJECT LIBRARY</p>
-                    <h2>All Projects</h2>
+                    <p class="section-tag">// PROJECT DATABASE</p>
+                    <h2>Project Archive</h2>
+                    <p>Choose a semester, search by name and open the project or its code.</p>
                 </div>
 
-                <div class="view-buttons">
-                    <button id="gridButton" class="active">Grid</button>
-                    <button id="listButton">List</button>
+                <div class="search-box">
+                    <span>⌕</span>
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search projects..."
+                        autocomplete="off"
+                    >
+                    <kbd>/</kbd>
                 </div>
             </div>
 
+            <div class="semester-tabs">
+                <button class="semester-tab active" data-semester="semester1">
+                    <span>01</span>
+                    First Semester
+                </button>
 
-            <div class="filters">
-                <button class="filter-button active" data-filter="all">All</button>
-                <button class="filter-button" data-filter="html">HTML / CSS</button>
-                <button class="filter-button" data-filter="javascript">JavaScript</button>
-                <button class="filter-button" data-filter="school">School</button>
-                <button class="filter-button" data-filter="other">Other</button>
+                <button class="semester-tab" data-semester="semester2">
+                    <span>02</span>
+                    Second Semester
+                </button>
             </div>
 
-
-            <div class="project-grid" id="projectGrid">
-
-                <!--
-                    TO ADD A NEW PROJECT:
-                    Copy one project-card below and change:
-                    1. href
-                    2. data-category
-                    3. data-title
-                    4. title
-                    5. description
-                    6. tags
-                -->
-
-
-                <a
-                    href="projects/project1/index.html"
-                    class="project-card"
-                    data-category="html school"
-                    data-title="Project One"
-                >
-                    <div class="project-card-top">
-                        <span class="project-number">01</span>
-                        <span class="project-arrow">↗</span>
+            <div class="semester-panel active" id="semester1">
+                <div class="panel-header">
+                    <div>
+                        <p>SEMESTER 01</p>
+                        <h3>First Semester</h3>
                     </div>
+                    <span class="project-counter"></span>
+                </div>
 
-                    <div class="project-icon">🌐</div>
+                <div class="project-grid">
+                    <!--
+                    COPY A CARD TO ADD A NEW PROJECT.
 
-                    <h3>Project One</h3>
+                    data-folder:
+                    The folder where that project lives.
 
-                    <p>
-                        A simple website project made with HTML and CSS.
-                    </p>
+                    Expected project files:
+                    index.html
+                    style.css
+                    script.js
+                    -->
 
-                    <div class="tags">
-                        <span>HTML</span>
-                        <span>CSS</span>
-                    </div>
-                </a>
+                    <article
+                        class="project-card"
+                        data-title="Project One"
+                        data-description="Responsive website made with HTML and CSS."
+                        data-folder="projects/project1"
+                    >
+                        <div class="card-glow"></div>
 
+                        <div class="card-top">
+                            <span class="project-id">PROJECT_001</span>
+                            <span class="project-status">COMPLETE</span>
+                        </div>
 
-                <a
-                    href="projects/project2/index.html"
-                    class="project-card"
-                    data-category="javascript school"
-                    data-title="Project Two"
-                >
-                    <div class="project-card-top">
-                        <span class="project-number">02</span>
-                        <span class="project-arrow">↗</span>
-                    </div>
+                        <div class="project-icon">&lt;/&gt;</div>
 
-                    <div class="project-icon">⚡</div>
+                        <h4>Project One</h4>
 
-                    <h3>Project Two</h3>
+                        <p>
+                            Responsive website made with HTML and CSS.
+                        </p>
 
-                    <p>
-                        A JavaScript project with simple interactive features.
-                    </p>
+                        <div class="tech-list">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                        </div>
 
-                    <div class="tags">
-                        <span>JavaScript</span>
-                        <span>School</span>
-                    </div>
-                </a>
+                        <div class="card-actions">
+                            <a
+                                class="open-project"
+                                href="Eerste_Semester/Labo_1/index.html"
+                            >
+                                Open Project
+                                <span>↗</span>
+                            </a>
 
+                            <button class="source-button">
+                                View Code
+                                <span>{ }</span>
+                            </button>
+                        </div>
+                    </article>
 
-                <a
-                    href="projects/project3/index.html"
-                    class="project-card"
-                    data-category="html javascript school"
-                    data-title="Project Three"
-                >
-                    <div class="project-card-top">
-                        <span class="project-number">03</span>
-                        <span class="project-arrow">↗</span>
-                    </div>
+                    <article
+                        class="project-card"
+                        data-title="Project Two"
+                        data-description="Interactive JavaScript project with user input."
+                        data-folder="projects/project2"
+                    >
+                        <div class="card-glow"></div>
 
-                    <div class="project-icon">💻</div>
+                        <div class="card-top">
+                            <span class="project-id">PROJECT_002</span>
+                            <span class="project-status">COMPLETE</span>
+                        </div>
 
-                    <h3>Project Three</h3>
+                        <div class="project-icon">JS</div>
 
-                    <p>
-                        A larger project using HTML, CSS and JavaScript.
-                    </p>
+                        <h4>Project Two</h4>
 
-                    <div class="tags">
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>JavaScript</span>
-                    </div>
-                </a>
+                        <p>
+                            Interactive JavaScript project with user input.
+                        </p>
 
+                        <div class="tech-list">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                        </div>
 
-                <a
-                    href="projects/project4/index.html"
-                    class="project-card"
-                    data-category="other"
-                    data-title="Project Four"
-                >
-                    <div class="project-card-top">
-                        <span class="project-number">04</span>
-                        <span class="project-arrow">↗</span>
-                    </div>
+                        <div class="card-actions">
+                            <a
+                                class="open-project"
+                                href="projects/project2/index.html"
+                            >
+                                Open Project
+                                <span>↗</span>
+                            </a>
 
-                    <div class="project-icon">📁</div>
+                            <button class="source-button">
+                                View Code
+                                <span>{ }</span>
+                            </button>
+                        </div>
+                    </article>
 
-                    <h3>Project Four</h3>
+                    <article
+                        class="project-card"
+                        data-title="Project Three"
+                        data-description="A school assignment focused on layout and navigation."
+                        data-folder="projects/project3"
+                    >
+                        <div class="card-glow"></div>
 
-                    <p>
-                        Use this card for another type of project.
-                    </p>
+                        <div class="card-top">
+                            <span class="project-id">PROJECT_003</span>
+                            <span class="project-status">COMPLETE</span>
+                        </div>
 
-                    <div class="tags">
-                        <span>Other</span>
-                    </div>
-                </a>
+                        <div class="project-icon">UI</div>
 
+                        <h4>Project Three</h4>
+
+                        <p>
+                            A school assignment focused on layout and navigation.
+                        </p>
+
+                        <div class="tech-list">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                        </div>
+
+                        <div class="card-actions">
+                            <a
+                                class="open-project"
+                                href="projects/project3/index.html"
+                            >
+                                Open Project
+                                <span>↗</span>
+                            </a>
+
+                            <button class="source-button">
+                                View Code
+                                <span>{ }</span>
+                            </button>
+                        </div>
+                    </article>
+                </div>
             </div>
 
+            <div class="semester-panel" id="semester2">
+                <div class="panel-header">
+                    <div>
+                        <p>SEMESTER 02</p>
+                        <h3>Second Semester</h3>
+                    </div>
+                    <span class="project-counter"></span>
+                </div>
 
-            <p id="noResults" class="no-results">
-                No projects found.
-            </p>
+                <div class="project-grid">
+                    <article
+                        class="project-card"
+                        data-title="Project Four"
+                        data-description="Second semester project with a more advanced layout."
+                        data-folder="projects/project4"
+                    >
+                        <div class="card-glow"></div>
 
+                        <div class="card-top">
+                            <span class="project-id">PROJECT_004</span>
+                            <span class="project-status">COMPLETE</span>
+                        </div>
+
+                        <div class="project-icon">WEB</div>
+
+                        <h4>Project Four</h4>
+
+                        <p>
+                            Second semester project with a more advanced layout.
+                        </p>
+
+                        <div class="tech-list">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                        </div>
+
+                        <div class="card-actions">
+                            <a
+                                class="open-project"
+                                href="projects/project4/index.html"
+                            >
+                                Open Project
+                                <span>↗</span>
+                            </a>
+
+                            <button class="source-button">
+                                View Code
+                                <span>{ }</span>
+                            </button>
+                        </div>
+                    </article>
+
+                    <article
+                        class="project-card"
+                        data-title="Project Five"
+                        data-description="A JavaScript based assignment with dynamic content."
+                        data-folder="projects/project5"
+                    >
+                        <div class="card-glow"></div>
+
+                        <div class="card-top">
+                            <span class="project-id">PROJECT_005</span>
+                            <span class="project-status">COMPLETE</span>
+                        </div>
+
+                        <div class="project-icon">JS</div>
+
+                        <h4>Project Five</h4>
+
+                        <p>
+                            A JavaScript based assignment with dynamic content.
+                        </p>
+
+                        <div class="tech-list">
+                            <span>JavaScript</span>
+                            <span>DOM</span>
+                        </div>
+
+                        <div class="card-actions">
+                            <a
+                                class="open-project"
+                                href="projects/project5/index.html"
+                            >
+                                Open Project
+                                <span>↗</span>
+                            </a>
+
+                            <button class="source-button">
+                                View Code
+                                <span>{ }</span>
+                            </button>
+                        </div>
+                    </article>
+
+                    <article
+                        class="project-card"
+                        data-title="Project Six"
+                        data-description="Final project combining HTML, CSS and JavaScript."
+                        data-folder="projects/project6"
+                    >
+                        <div class="card-glow"></div>
+
+                        <div class="card-top">
+                            <span class="project-id">PROJECT_006</span>
+                            <span class="project-status">COMPLETE</span>
+                        </div>
+
+                        <div class="project-icon">FX</div>
+
+                        <h4>Project Six</h4>
+
+                        <p>
+                            Final project combining HTML, CSS and JavaScript.
+                        </p>
+
+                        <div class="tech-list">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                        </div>
+
+                        <div class="card-actions">
+                            <a
+                                class="open-project"
+                                href="projects/project6/index.html"
+                            >
+                                Open Project
+                                <span>↗</span>
+                            </a>
+
+                            <button class="source-button">
+                                View Code
+                                <span>{ }</span>
+                            </button>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <div class="empty-state" id="emptyState">
+                <div>404</div>
+                <h3>No project found</h3>
+                <p>Try another search.</p>
+            </div>
         </section>
-
 
         <section class="about-section" id="about">
-            <p class="small-title">ABOUT</p>
+            <div class="about-number">02</div>
 
-            <h2>About This Website</h2>
-
-            <p>
-                This website is used as a central page for my school projects.
-                Each project card links directly to another project inside this repository.
-            </p>
+            <div>
+                <p class="section-tag">// ABOUT THIS PAGE</p>
+                <h2>One place for everything.</h2>
+                <p>
+                    This page is my central school project archive. Every card links to
+                    a project, and the source button lets the HTML, CSS and JavaScript
+                    be viewed directly without leaving this page.
+                </p>
+            </div>
         </section>
-
     </main>
 
-
     <footer>
-        <p>Made for school projects.</p>
+        <span>PROJECT NEXUS</span>
+        <span>School Project Archive</span>
+        <span id="year"></span>
     </footer>
 
+    <!-- SOURCE CODE VIEWER -->
+    <div class="code-modal" id="codeModal" aria-hidden="true">
+        <div class="modal-backdrop" data-close-modal></div>
+
+        <div class="modal-window">
+            <div class="modal-topbar">
+                <div class="window-controls">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div>
+                    <small>SOURCE VIEWER</small>
+                    <strong id="modalProjectTitle">Project</strong>
+                </div>
+
+                <button class="close-modal" data-close-modal>×</button>
+            </div>
+
+            <div class="code-tabs">
+                <button class="code-tab active" data-file="index.html">
+                    HTML
+                </button>
+
+                <button class="code-tab" data-file="style.css">
+                    CSS
+                </button>
+
+                <button class="code-tab" data-file="script.js">
+                    JS
+                </button>
+
+                <button class="copy-code" id="copyCode">
+                    Copy Code
+                </button>
+            </div>
+
+            <div class="code-file-path" id="codeFilePath"></div>
+
+            <div class="code-area">
+                <div class="line-numbers" id="lineNumbers"></div>
+
+                <pre><code id="codeDisplay">Loading...</code></pre>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
-
 </body>
 </html>
