@@ -1,374 +1,451 @@
 (function () {
-    const $ = (selector, root = document) => root.querySelector(selector);
-    const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+
+    const $ = (selector, root = document) =>
+        root.querySelector(selector);
+
+    const $$ = (selector, root = document) =>
+        [...root.querySelectorAll(selector)];
+
 
     const searchInput = $("#searchInput");
-    const emptyState = $("#emptyState");
-
     const openAllBtn = $("#openAllBtn");
     const closeAllBtn = $("#closeAllBtn");
-    const focusSearchBtn = $("#focusSearchBtn");
+    const emptyState = $("#emptyState");
 
     const semesterTabs = $$(".semester-tab");
-    const semesterPanels = $$(".semester-panel");
+    const semesters = $$(".semester");
 
-    const sourceModal = $("#sourceModal");
-    const sourceProjectName = $("#sourceProjectName");
-    const sourcePath = $("#sourcePath");
-    const sourceCode = $("#sourceCode");
+    const codeModal = $("#codeModal");
+    const codeProjectName = $("#codeProjectName");
+    const codePath = $("#codePath");
+    const codeDisplay = $("#codeDisplay");
     const lineNumbers = $("#lineNumbers");
-    const sourceTabs = $$(".source-tab");
+    const codeTabs = $$(".code-tab");
     const copyCodeBtn = $("#copyCodeBtn");
 
-    const allLabs = $$("details.lab");
+    let activeSemester = "semester1";
+    let activeCodeType = "html";
 
-    let activeSemester = "semester-1";
-    let activeSourceType = "html";
+    let currentProjectName = "";
+    let currentProjectUrl = "";
 
-    let currentProject = {
-        name: "",
-        url: ""
-    };
-
-    let sourceFiles = {
+    let codeFiles = {
         html: null,
         css: null,
         js: null
     };
 
 
-    // ------------------------------------
-    // SMALL HELPERS
-    // ------------------------------------
+    // -------------------------------------------------
+    // BUILD PROJECT ROWS AUTOMATICALLY
+    // -------------------------------------------------
+    //
+    // In the HTML you only write:
+    //
+    // <details class="lab">
+    //     <summary>Labo 1</summary>
+    //
+    //     <div class="projects">
+    //         <a href="path/index.html">Project Name</a>
+    //     </div>
+    // </details>
+    //
+    // This JavaScript turns every link into a full row
+    // with an Open button and a Code button.
+    // -------------------------------------------------
 
-    function escapeRegExp(text) {
-        return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    }
+    function buildProjectRows() {
+
+        $$(".projects").forEach((projectContainer) => {
+
+            const links =
+                $$(":scope > a[href]", projectContainer);
+
+            links.forEach((link, index) => {
+
+                const projectName =
+                    link.textContent.trim();
+
+                const projectUrl =
+                    link.getAttribute("href");
 
 
-    function clearHighlights(root = document) {
-        $$("mark", root).forEach((mark) => {
-            mark.replaceWith(
-                document.createTextNode(mark.textContent)
-            );
+                const row =
+                    document.createElement("div");
+
+                row.className =
+                    "project-row";
+
+                row.dataset.search =
+                    (
+                        projectName + " " +
+                        projectUrl
+                    ).toLowerCase();
+
+
+                row.innerHTML = `
+                    <div class="project-left">
+
+                        <span class="project-number">
+                            ${String(index + 1).padStart(2, "0")}
+                        </span>
+
+                        <a
+                            class="project-link"
+                            href="${projectUrl}"
+                        >
+                            ${projectName}
+                        </a>
+
+                    </div>
+
+
+                    <div class="project-buttons">
+
+                        <a
+                            class="open-button"
+                            href="${projectUrl}"
+                        >
+                            Open
+                        </a>
+
+                        <button
+                            class="code-button"
+                            type="button"
+                            data-url="${projectUrl}"
+                            data-name="${projectName}"
+                        >
+                            Code
+                        </button>
+
+                    </div>
+                `;
+
+
+                link.replaceWith(row);
+
+            });
+
         });
+
     }
 
 
-    function highlightText(element, query) {
-        if (!element) {
-            return;
-        }
+    // -------------------------------------------------
+    // COUNTS
+    // -------------------------------------------------
 
-        const original =
-            element.dataset.originalText ||
-            element.textContent;
+    function updateCounts() {
 
-        element.dataset.originalText = original;
+        semesters.forEach((semester) => {
 
-        if (!query) {
-            element.textContent = original;
-            return;
-        }
+            const visibleProjects =
+                $$(".project-row", semester)
+                    .filter(
+                        (project) =>
+                            !project.hidden
+                    );
 
-        const regex =
-            new RegExp(
-                `(${escapeRegExp(query)})`,
-                "gi"
-            );
+            const counter =
+                $(".semester-count", semester);
 
-        element.innerHTML =
-            original.replace(
-                regex,
-                "<mark>$1</mark>"
-            );
+            counter.textContent =
+                `${visibleProjects.length} projects`;
+
+        });
+
     }
 
 
-    function getActivePanel() {
-        return document.getElementById(activeSemester);
-    }
-
-
-    // ------------------------------------
-    // SEMESTER TABS
-    // ------------------------------------
+    // -------------------------------------------------
+    // SEMESTER SWITCHING
+    // -------------------------------------------------
 
     semesterTabs.forEach((tab) => {
+
         tab.addEventListener("click", () => {
-            activeSemester = tab.dataset.target;
+
+            activeSemester =
+                tab.dataset.semester;
+
 
             semesterTabs.forEach((button) => {
-                const isActive =
-                    button === tab;
 
                 button.classList.toggle(
                     "active",
-                    isActive
+                    button === tab
                 );
 
-                button.setAttribute(
-                    "aria-selected",
-                    String(isActive)
-                );
             });
 
-            semesterPanels.forEach((panel) => {
-                panel.classList.toggle(
+
+            semesters.forEach((semester) => {
+
+                semester.classList.toggle(
                     "active",
-                    panel.id === activeSemester
+                    semester.id === activeSemester
                 );
+
             });
 
-            applyFilter(searchInput.value);
+
+            filterProjects();
+
         });
+
     });
 
 
-    // ------------------------------------
+    // -------------------------------------------------
     // SEARCH
-    // ------------------------------------
+    // -------------------------------------------------
 
-    function applyFilter(rawValue) {
+    function filterProjects() {
+
         const query =
-            rawValue.trim().toLowerCase();
+            searchInput.value
+                .trim()
+                .toLowerCase();
 
-        clearHighlights();
 
-        let anythingVisible = false;
+        let anythingVisible =
+            false;
 
-        semesterPanels.forEach((panel) => {
-            const labs =
-                $$("details.lab", panel);
 
-            labs.forEach((lab) => {
-                const labTitle =
-                    $(".lab-title strong", lab);
+        semesters.forEach((semester) => {
 
-                const labText =
-                    labTitle
-                        ? labTitle.textContent.toLowerCase()
-                        : "";
+            $$(".lab", semester)
+                .forEach((lab) => {
 
-                const items =
-                    $$(".project-item", lab);
+                    const labName =
+                        $("summary", lab)
+                            .textContent
+                            .toLowerCase();
 
-                let visibleProjects = 0;
+                    const projects =
+                        $$(".project-row", lab);
 
-                items.forEach((item) => {
-                    const projectName =
-                        $(".project-name", item);
+                    let projectMatch =
+                        false;
 
-                    const projectText =
-                        item.dataset.search ||
-                        item.textContent.toLowerCase();
 
-                    const matches =
+                    projects.forEach((project) => {
+
+                        const matches =
+                            !query ||
+                            labName.includes(query) ||
+                            project.dataset.search.includes(query);
+
+
+                        project.hidden =
+                            !matches;
+
+
+                        if (matches) {
+                            projectMatch = true;
+                        }
+
+                    });
+
+
+                    const labMatches =
                         !query ||
-                        projectText.includes(query) ||
-                        labText.includes(query);
+                        labName.includes(query) ||
+                        projectMatch;
 
-                    item.hidden = !matches;
 
-                    if (matches) {
-                        visibleProjects++;
+                    lab.hidden =
+                        !labMatches;
+
+
+                    if (
+                        query &&
+                        labMatches
+                    ) {
+                        lab.open = true;
                     }
 
-                    if (projectName) {
-                        highlightText(
-                            projectName,
-                            query
-                        );
-                    }
                 });
 
-                const labMatches =
-                    !query ||
-                    labText.includes(query) ||
-                    visibleProjects > 0;
-
-                lab.hidden = !labMatches;
-
-                if (query && labMatches) {
-                    lab.open = true;
-                }
-
-                if (labTitle) {
-                    highlightText(
-                        labTitle,
-                        query
-                    );
-                }
-            });
         });
+
 
         const activePanel =
-            getActivePanel();
+            document.getElementById(
+                activeSemester
+            );
 
-        if (activePanel) {
-            anythingVisible =
-                $$(
-                    "details.lab:not([hidden])",
-                    activePanel
-                ).length > 0;
-        }
+
+        anythingVisible =
+            $$(".lab", activePanel)
+                .some(
+                    (lab) =>
+                        !lab.hidden
+                );
+
 
         emptyState.hidden =
-            anythingVisible;
-
-        updateVisibleCounts();
-    }
+            anythingVisible ||
+            $$(".lab", activePanel).length === 0;
 
 
-    function updateVisibleCounts() {
-        semesterPanels.forEach((panel) => {
-            const semesterTotal =
-                $(".semester-total strong", panel);
+        updateCounts();
 
-            const visibleProjects =
-                $$(".project-item", panel)
-                    .filter((item) => !item.hidden)
-                    .filter(
-                        (item) =>
-                            $(".project-open", item)
-                    ).length;
-
-            if (semesterTotal) {
-                semesterTotal.textContent =
-                    visibleProjects;
-            }
-
-            $$("details.lab", panel).forEach((lab) => {
-                const visibleProjectCount =
-                    $$(".project-item", lab)
-                        .filter((item) => !item.hidden)
-                        .filter(
-                            (item) =>
-                                $(".project-open", item)
-                        ).length;
-
-                const count =
-                    $(".lab-count", lab);
-
-                if (count) {
-                    count.textContent =
-                        `${visibleProjectCount} projects`;
-                }
-            });
-        });
     }
 
 
     searchInput.addEventListener(
         "input",
-        (event) => {
-            applyFilter(event.target.value);
+        filterProjects
+    );
+
+
+    // -------------------------------------------------
+    // OPEN / CLOSE LABS
+    // -------------------------------------------------
+
+    openAllBtn.addEventListener(
+        "click",
+        () => {
+
+            const activePanel =
+                document.getElementById(
+                    activeSemester
+                );
+
+            $$(".lab", activePanel)
+                .forEach((lab) => {
+
+                    if (!lab.hidden) {
+                        lab.open = true;
+                    }
+
+                });
+
         }
     );
 
 
-    // ------------------------------------
-    // OPEN / CLOSE LABS
-    // ------------------------------------
+    closeAllBtn.addEventListener(
+        "click",
+        () => {
 
-    openAllBtn.addEventListener("click", () => {
-        const activePanel =
-            getActivePanel();
+            const activePanel =
+                document.getElementById(
+                    activeSemester
+                );
 
-        $$("details.lab", activePanel)
-            .forEach((lab) => {
-                if (!lab.hidden) {
-                    lab.open = true;
-                }
-            });
-    });
-
-
-    closeAllBtn.addEventListener("click", () => {
-        const activePanel =
-            getActivePanel();
-
-        $$("details.lab", activePanel)
-            .forEach((lab) => {
-                lab.open = false;
-            });
-    });
-
-
-    // ------------------------------------
-    // SEARCH SHORTCUT
-    // ------------------------------------
-
-    if (focusSearchBtn) {
-        focusSearchBtn.addEventListener("click", () => {
-            document
-                .getElementById("archive")
-                .scrollIntoView({
-                    behavior: "smooth"
+            $$(".lab", activePanel)
+                .forEach((lab) => {
+                    lab.open = false;
                 });
 
-            setTimeout(() => {
+        }
+    );
+
+
+    // -------------------------------------------------
+    // CTRL + /
+    // -------------------------------------------------
+
+    document.addEventListener(
+        "keydown",
+        (event) => {
+
+            if (
+                event.ctrlKey &&
+                event.key === "/"
+            ) {
+                event.preventDefault();
+
                 searchInput.focus();
                 searchInput.select();
-            }, 450);
-        });
+            }
+
+
+            if (
+                event.key === "Escape" &&
+                codeModal.classList.contains("open")
+            ) {
+                closeCodeModal();
+                return;
+            }
+
+
+            if (event.key === "Escape") {
+
+                searchInput.value = "";
+
+                filterProjects();
+
+                searchInput.blur();
+
+            }
+
+        }
+    );
+
+
+    // -------------------------------------------------
+    // CODE BUTTONS
+    // -------------------------------------------------
+
+    function connectCodeButtons() {
+
+        $$(".code-button")
+            .forEach((button) => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        currentProjectName =
+                            button.dataset.name;
+
+                        currentProjectUrl =
+                            button.dataset.url;
+
+                        activeCodeType =
+                            "html";
+
+
+                        codeProjectName.textContent =
+                            currentProjectName;
+
+
+                        codeTabs.forEach((tab) => {
+
+                            tab.classList.toggle(
+                                "active",
+                                tab.dataset.type === "html"
+                            );
+
+                        });
+
+
+                        openCodeModal();
+
+                        loadProjectCode();
+
+                    }
+                );
+
+            });
+
     }
 
 
-    document.addEventListener("keydown", (event) => {
-        if (
-            event.ctrlKey &&
-            event.key === "/"
-        ) {
-            event.preventDefault();
+    // -------------------------------------------------
+    // CODE MODAL
+    // -------------------------------------------------
 
-            searchInput.focus();
-            searchInput.select();
-        }
+    function openCodeModal() {
 
-        if (
-            event.key === "Escape" &&
-            sourceModal.classList.contains("open")
-        ) {
-            closeSourceModal();
-            return;
-        }
+        codeModal.classList.add(
+            "open"
+        );
 
-        if (event.key === "Escape") {
-            searchInput.value = "";
-            applyFilter("");
-            searchInput.blur();
-        }
-    });
-
-
-    // ------------------------------------
-    // SOURCE VIEWER
-    // ------------------------------------
-
-    $$(".code-button").forEach((button) => {
-        button.addEventListener("click", () => {
-            currentProject = {
-                name: button.dataset.projectName,
-                url: button.dataset.projectUrl
-            };
-
-            sourceProjectName.textContent =
-                currentProject.name;
-
-            activeSourceType = "html";
-
-            setActiveSourceTab();
-            openSourceModal();
-            loadProjectSources();
-        });
-    });
-
-
-    function openSourceModal() {
-        sourceModal.classList.add("open");
-
-        sourceModal.setAttribute(
+        codeModal.setAttribute(
             "aria-hidden",
             "false"
         );
@@ -376,13 +453,17 @@
         document.body.classList.add(
             "modal-open"
         );
+
     }
 
 
-    function closeSourceModal() {
-        sourceModal.classList.remove("open");
+    function closeCodeModal() {
 
-        sourceModal.setAttribute(
+        codeModal.classList.remove(
+            "open"
+        );
+
+        codeModal.setAttribute(
             "aria-hidden",
             "true"
         );
@@ -390,362 +471,407 @@
         document.body.classList.remove(
             "modal-open"
         );
+
     }
 
 
-    $$("[data-close-modal]").forEach((element) => {
-        element.addEventListener(
-            "click",
-            closeSourceModal
-        );
-    });
+    $$("[data-close-modal]")
+        .forEach((element) => {
 
-
-    sourceTabs.forEach((tab) => {
-        tab.addEventListener("click", () => {
-            activeSourceType =
-                tab.dataset.sourceType;
-
-            setActiveSourceTab();
-            showActiveSource();
-        });
-    });
-
-
-    function setActiveSourceTab() {
-        sourceTabs.forEach((tab) => {
-            tab.classList.toggle(
-                "active",
-                tab.dataset.sourceType ===
-                    activeSourceType
+            element.addEventListener(
+                "click",
+                closeCodeModal
             );
+
         });
-    }
 
 
-    async function loadProjectSources() {
-        sourceFiles = {
+    codeTabs.forEach((tab) => {
+
+        tab.addEventListener(
+            "click",
+            () => {
+
+                activeCodeType =
+                    tab.dataset.type;
+
+
+                codeTabs.forEach((button) => {
+
+                    button.classList.toggle(
+                        "active",
+                        button === tab
+                    );
+
+                });
+
+
+                showCode();
+
+            }
+        );
+
+    });
+
+
+    // -------------------------------------------------
+    // LOAD HTML / CSS / JS
+    // -------------------------------------------------
+
+    async function loadProjectCode() {
+
+        codeFiles = {
             html: null,
             css: null,
             js: null
         };
 
-        showLoadingMessage();
 
-        const projectUrl =
-            new URL(
-                currentProject.url,
-                window.location.href
-            );
+        codeDisplay.textContent =
+            "Loading...";
+
+        lineNumbers.textContent =
+            "1";
+
+        codePath.textContent =
+            currentProjectUrl;
+
 
         try {
+
+            const htmlUrl =
+                new URL(
+                    currentProjectUrl,
+                    window.location.href
+                );
+
+
             const htmlResponse =
-                await fetch(projectUrl.href);
+                await fetch(htmlUrl.href);
+
 
             if (!htmlResponse.ok) {
                 throw new Error(
-                    "HTML file could not be loaded."
+                    "Project HTML could not be loaded."
                 );
             }
 
-            const htmlText =
+
+            const html =
                 await htmlResponse.text();
 
-            sourceFiles.html = {
-                path: currentProject.url,
-                code: htmlText
+
+            codeFiles.html = {
+                path: currentProjectUrl,
+                code: html
             };
+
 
             const parser =
                 new DOMParser();
 
+
             const projectDocument =
                 parser.parseFromString(
-                    htmlText,
+                    html,
                     "text/html"
                 );
 
+
             await Promise.all([
-                loadCssSource(
+
+                loadCss(
                     projectDocument,
-                    projectUrl
+                    htmlUrl
                 ),
-                loadJsSource(
+
+                loadJs(
                     projectDocument,
-                    projectUrl
+                    htmlUrl
                 )
+
             ]);
 
-            showActiveSource();
+
+            showCode();
+
         } catch (error) {
+
             const message =
-`Could not load this project's source.
+`Could not load this project.
 
-Project:
-${currentProject.url}
+${currentProjectUrl}
 
-This viewer uses fetch(), so it works best when the archive is running through GitHub Pages.
+The code viewer works when the website is running on GitHub Pages.
 
-Error:
 ${error.message}`;
 
-            sourceFiles.html = {
-                path: currentProject.url,
+
+            codeFiles.html = {
+                path: currentProjectUrl,
                 code: message
             };
 
-            sourceFiles.css = {
-                path: "No stylesheet loaded",
-                code:
-                    "No CSS source could be loaded."
+
+            codeFiles.css = {
+                path: "No CSS loaded",
+                code: "No CSS file could be loaded."
             };
 
-            sourceFiles.js = {
-                path: "No script loaded",
-                code:
-                    "No JavaScript source could be loaded."
+
+            codeFiles.js = {
+                path: "No JavaScript loaded",
+                code: "No JavaScript file could be loaded."
             };
 
-            showActiveSource();
+
+            showCode();
+
         }
+
     }
 
 
-    async function loadCssSource(
+    async function loadCss(
         projectDocument,
-        projectUrl
+        htmlUrl
     ) {
-        const stylesheets =
+
+        const stylesheet =
             [
                 ...projectDocument.querySelectorAll(
                     'link[rel="stylesheet"][href]'
                 )
-            ];
+            ].find((link) => {
 
-        const localStylesheet =
-            stylesheets.find((link) => {
                 const href =
                     link.getAttribute("href");
 
                 return (
                     href &&
-                    !href.startsWith("http://") &&
-                    !href.startsWith("https://") &&
+                    !href.startsWith("http") &&
                     !href.startsWith("//")
                 );
+
             });
 
-        if (!localStylesheet) {
-            sourceFiles.css = {
-                path: "No local stylesheet found",
-                code:
-                    "This HTML file does not contain a local CSS stylesheet link."
+
+        if (!stylesheet) {
+
+            codeFiles.css = {
+                path: "No local CSS file",
+                code: "No local CSS file was found in this project."
             };
 
             return;
+
         }
 
-        const cssPath =
-            localStylesheet.getAttribute("href");
 
         const cssUrl =
             new URL(
-                cssPath,
-                projectUrl
+                stylesheet.getAttribute("href"),
+                htmlUrl
             );
 
+
         try {
+
             const response =
                 await fetch(cssUrl.href);
 
-            if (!response.ok) {
-                throw new Error();
-            }
 
-            sourceFiles.css = {
+            codeFiles.css = {
                 path: cssUrl.pathname,
                 code: await response.text()
             };
+
         } catch {
-            sourceFiles.css = {
+
+            codeFiles.css = {
                 path: cssUrl.pathname,
-                code:
-                    `The CSS file could not be loaded:\n${cssUrl.pathname}`
+                code: "The CSS file could not be loaded."
             };
+
         }
+
     }
 
 
-    async function loadJsSource(
+    async function loadJs(
         projectDocument,
-        projectUrl
+        htmlUrl
     ) {
-        const scripts =
+
+        const script =
             [
                 ...projectDocument.querySelectorAll(
                     "script[src]"
                 )
-            ];
+            ].find((scriptTag) => {
 
-        const localScript =
-            scripts.find((script) => {
                 const src =
-                    script.getAttribute("src");
+                    scriptTag.getAttribute("src");
 
                 return (
                     src &&
-                    !src.startsWith("http://") &&
-                    !src.startsWith("https://") &&
+                    !src.startsWith("http") &&
                     !src.startsWith("//")
                 );
+
             });
 
-        if (!localScript) {
-            sourceFiles.js = {
-                path: "No local JavaScript found",
-                code:
-                    "This HTML file does not contain a local JavaScript file."
+
+        if (!script) {
+
+            codeFiles.js = {
+                path: "No local JavaScript file",
+                code: "No local JavaScript file was found in this project."
             };
 
             return;
+
         }
 
-        const jsPath =
-            localScript.getAttribute("src");
 
         const jsUrl =
             new URL(
-                jsPath,
-                projectUrl
+                script.getAttribute("src"),
+                htmlUrl
             );
 
+
         try {
+
             const response =
                 await fetch(jsUrl.href);
 
-            if (!response.ok) {
-                throw new Error();
-            }
 
-            sourceFiles.js = {
+            codeFiles.js = {
                 path: jsUrl.pathname,
                 code: await response.text()
             };
+
         } catch {
-            sourceFiles.js = {
+
+            codeFiles.js = {
                 path: jsUrl.pathname,
-                code:
-                    `The JavaScript file could not be loaded:\n${jsUrl.pathname}`
+                code: "The JavaScript file could not be loaded."
             };
+
         }
+
     }
 
 
-    function showLoadingMessage() {
-        sourcePath.textContent =
-            currentProject.url;
+    function showCode() {
 
-        sourceCode.textContent =
-            "Loading project source...";
-
-        lineNumbers.textContent = "1";
-    }
-
-
-    function showActiveSource() {
         const file =
-            sourceFiles[activeSourceType];
+            codeFiles[activeCodeType];
+
 
         if (!file) {
-            sourcePath.textContent =
+
+            codePath.textContent =
                 "Loading...";
 
-            sourceCode.textContent =
-                "Loading source...";
+            codeDisplay.textContent =
+                "Loading...";
 
             lineNumbers.textContent =
                 "1";
 
             return;
+
         }
 
-        sourcePath.textContent =
+
+        codePath.textContent =
             file.path;
 
-        sourceCode.textContent =
+
+        codeDisplay.textContent =
             file.code;
 
-        updateLineNumbers(
-            file.code
-        );
-    }
 
+        const amountOfLines =
+            file.code.split("\n").length;
 
-    function updateLineNumbers(code) {
-        const amount =
-            code.split("\n").length;
 
         lineNumbers.textContent =
             Array.from(
                 {
-                    length: amount
+                    length: amountOfLines
                 },
                 (_, index) =>
                     index + 1
             ).join("\n");
+
     }
 
 
-    // ------------------------------------
-    // COPY SOURCE
-    // ------------------------------------
+    // -------------------------------------------------
+    // COPY CODE
+    // -------------------------------------------------
 
     copyCodeBtn.addEventListener(
         "click",
         async () => {
+
             const file =
-                sourceFiles[activeSourceType];
+                codeFiles[activeCodeType];
+
 
             if (!file) {
                 return;
             }
 
+
             try {
+
                 await navigator.clipboard.writeText(
                     file.code
                 );
 
-                const originalText =
-                    copyCodeBtn.textContent;
 
                 copyCodeBtn.textContent =
                     "Copied";
 
-                setTimeout(() => {
-                    copyCodeBtn.textContent =
-                        originalText;
-                }, 1200);
-            } catch {
-                copyCodeBtn.textContent =
-                    "Copy Failed";
 
                 setTimeout(() => {
+
                     copyCodeBtn.textContent =
-                        "Copy Code";
-                }, 1200);
+                        "Copy";
+
+                }, 1000);
+
+            } catch {
+
+                copyCodeBtn.textContent =
+                    "Failed";
+
+
+                setTimeout(() => {
+
+                    copyCodeBtn.textContent =
+                        "Copy";
+
+                }, 1000);
+
             }
+
         }
     );
 
 
-    // ------------------------------------
-    // INITIAL PAGE SETUP
-    // ------------------------------------
+    // -------------------------------------------------
+    // START PAGE
+    // -------------------------------------------------
 
-    document.getElementById(
-        "currentYear"
-    ).textContent =
-        new Date().getFullYear();
+    buildProjectRows();
 
-    updateVisibleCounts();
+    connectCodeButtons();
+
+    updateCounts();
+
 })();
