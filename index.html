@@ -1,12 +1,226 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Project Hub</title>
+
     <link rel="stylesheet" href="style.css">
-    <title>Webdevelopment</title>
 </head>
+
 <body>
 
-<script type="text/javascript" charset="utf-8" src="code.js"></script>
+    <header>
+        <div class="navbar">
+            <a href="index.html" class="logo">ProjectHub</a>
+
+            <nav>
+                <a href="#projects">Projects</a>
+                <a href="#about">About</a>
+            </nav>
+        </div>
+    </header>
+
+
+    <main>
+
+        <section class="hero">
+            <p class="small-title">SCHOOL PROJECT COLLECTION</p>
+
+            <h1>My Projects</h1>
+
+            <p class="hero-text">
+                A simple place where I keep all of my school projects.
+                Use the search bar or filters to quickly find what you need.
+            </p>
+
+            <div class="search-box">
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search for a project..."
+                >
+            </div>
+
+            <div class="stats">
+                <p><strong id="projectCount">0</strong> Projects</p>
+                <p><strong id="categoryCount">0</strong> Categories</p>
+            </div>
+        </section>
+
+
+        <section class="projects-section" id="projects">
+
+            <div class="section-top">
+                <div>
+                    <p class="small-title">PROJECT LIBRARY</p>
+                    <h2>All Projects</h2>
+                </div>
+
+                <div class="view-buttons">
+                    <button id="gridButton" class="active">Grid</button>
+                    <button id="listButton">List</button>
+                </div>
+            </div>
+
+
+            <div class="filters">
+                <button class="filter-button active" data-filter="all">All</button>
+                <button class="filter-button" data-filter="html">HTML / CSS</button>
+                <button class="filter-button" data-filter="javascript">JavaScript</button>
+                <button class="filter-button" data-filter="school">School</button>
+                <button class="filter-button" data-filter="other">Other</button>
+            </div>
+
+
+            <div class="project-grid" id="projectGrid">
+
+                <!--
+                    TO ADD A NEW PROJECT:
+                    Copy one project-card below and change:
+                    1. href
+                    2. data-category
+                    3. data-title
+                    4. title
+                    5. description
+                    6. tags
+                -->
+
+
+                <a
+                    href="projects/project1/index.html"
+                    class="project-card"
+                    data-category="html school"
+                    data-title="Project One"
+                >
+                    <div class="project-card-top">
+                        <span class="project-number">01</span>
+                        <span class="project-arrow">↗</span>
+                    </div>
+
+                    <div class="project-icon">🌐</div>
+
+                    <h3>Project One</h3>
+
+                    <p>
+                        A simple website project made with HTML and CSS.
+                    </p>
+
+                    <div class="tags">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                    </div>
+                </a>
+
+
+                <a
+                    href="projects/project2/index.html"
+                    class="project-card"
+                    data-category="javascript school"
+                    data-title="Project Two"
+                >
+                    <div class="project-card-top">
+                        <span class="project-number">02</span>
+                        <span class="project-arrow">↗</span>
+                    </div>
+
+                    <div class="project-icon">⚡</div>
+
+                    <h3>Project Two</h3>
+
+                    <p>
+                        A JavaScript project with simple interactive features.
+                    </p>
+
+                    <div class="tags">
+                        <span>JavaScript</span>
+                        <span>School</span>
+                    </div>
+                </a>
+
+
+                <a
+                    href="projects/project3/index.html"
+                    class="project-card"
+                    data-category="html javascript school"
+                    data-title="Project Three"
+                >
+                    <div class="project-card-top">
+                        <span class="project-number">03</span>
+                        <span class="project-arrow">↗</span>
+                    </div>
+
+                    <div class="project-icon">💻</div>
+
+                    <h3>Project Three</h3>
+
+                    <p>
+                        A larger project using HTML, CSS and JavaScript.
+                    </p>
+
+                    <div class="tags">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                    </div>
+                </a>
+
+
+                <a
+                    href="projects/project4/index.html"
+                    class="project-card"
+                    data-category="other"
+                    data-title="Project Four"
+                >
+                    <div class="project-card-top">
+                        <span class="project-number">04</span>
+                        <span class="project-arrow">↗</span>
+                    </div>
+
+                    <div class="project-icon">📁</div>
+
+                    <h3>Project Four</h3>
+
+                    <p>
+                        Use this card for another type of project.
+                    </p>
+
+                    <div class="tags">
+                        <span>Other</span>
+                    </div>
+                </a>
+
+            </div>
+
+
+            <p id="noResults" class="no-results">
+                No projects found.
+            </p>
+
+        </section>
+
+
+        <section class="about-section" id="about">
+            <p class="small-title">ABOUT</p>
+
+            <h2>About This Website</h2>
+
+            <p>
+                This website is used as a central page for my school projects.
+                Each project card links directly to another project inside this repository.
+            </p>
+        </section>
+
+    </main>
+
+
+    <footer>
+        <p>Made for school projects.</p>
+    </footer>
+
+
+    <script src="script.js"></script>
+
 </body>
 </html>
