@@ -299,18 +299,20 @@
     // SEARCH SHORTCUT
     // ------------------------------------
 
-    focusSearchBtn.addEventListener("click", () => {
-        document
-            .getElementById("archive")
-            .scrollIntoView({
-                behavior: "smooth"
-            });
+    if (focusSearchBtn) {
+        focusSearchBtn.addEventListener("click", () => {
+            document
+                .getElementById("archive")
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
 
-        setTimeout(() => {
-            searchInput.focus();
-            searchInput.select();
-        }, 450);
-    });
+            setTimeout(() => {
+                searchInput.focus();
+                searchInput.select();
+            }, 450);
+        });
+    }
 
 
     document.addEventListener("keydown", (event) => {

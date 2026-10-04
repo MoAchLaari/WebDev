@@ -52,75 +52,31 @@
     </header>
 
     <main>
-        <section class="hero">
-            <div class="hero-copy">
-                <div class="hero-kicker">
-                    <span></span>
-                    WEB DEVELOPMENT I
-                </div>
-
-                <h1>
-                    PROJECT
-                    <span>ARCHIVE</span>
-                </h1>
-
+        <section class="compact-intro">
+            <div class="intro-copy">
+                <p class="section-label">// WEB DEVELOPMENT I</p>
+                <h1>Project Archive</h1>
                 <p>
-                    One dashboard for every lab, exercise and assignment.
-                    Search instantly, switch between semesters and inspect the
-                    HTML, CSS and JavaScript of each project.
+                    Browse all labs and assignments from both semesters.
+                    Search by lab or project name, open projects directly,
+                    or inspect their HTML, CSS and JavaScript.
                 </p>
-
-                <div class="hero-actions">
-                    <a class="primary-action" href="#archive">
-                        Browse Projects
-                        <span>↓</span>
-                    </a>
-
-                    <button class="secondary-action" id="focusSearchBtn" type="button">
-                        Quick Search
-                        <kbd>Ctrl /</kbd>
-                    </button>
-                </div>
             </div>
 
-            <div class="hero-dashboard">
-                <div class="dashboard-head">
-                    <div>
-                        <span class="mini-dot"></span>
-                        LIVE DATABASE
-                    </div>
-
-                    <span>2025 / 2026</span>
+            <div class="intro-stats">
+                <div class="mini-stat">
+                    <span>SEMESTERS</span>
+                    <strong>02</strong>
                 </div>
 
-                <div class="dashboard-grid">
-                    <div class="stat-card accent-card">
-                        <span>SEMESTERS</span>
-                        <strong>02</strong>
-                        <small>Academic archive</small>
-                    </div>
-
-                    <div class="stat-card">
-                        <span>LABS</span>
-                        <strong id="labCount">19</strong>
-                        <small>Available sections</small>
-                    </div>
-
-                    <div class="stat-card">
-                        <span>PROJECTS</span>
-                        <strong id="totalLinkCount">76</strong>
-                        <small>Linked exercises</small>
-                    </div>
-
-                    <div class="stat-card">
-                        <span>SOURCE VIEW</span>
-                        <strong>3X</strong>
-                        <small>HTML · CSS · JS</small>
-                    </div>
+                <div class="mini-stat">
+                    <span>LABS</span>
+                    <strong id="labCount">19</strong>
                 </div>
 
-                <div class="dashboard-line">
-                    <span></span>
+                <div class="mini-stat">
+                    <span>PROJECTS</span>
+                    <strong id="totalLinkCount">76</strong>
                 </div>
             </div>
         </section>
@@ -3030,6 +2986,131 @@
         </section>
     
             </div>
+
+            <!--
+            ============================================================
+            LAB TEMPLATE - COPY THIS INTO THE SEMESTER YOU WANT
+            ============================================================
+
+            1. Copy the full <details class="lab"> block below.
+            2. Change:
+               - NODE number
+               - Labo name
+               - Project names
+               - href paths
+               - data-project-url paths
+            3. Add or remove <li class="project-item"> blocks as needed.
+
+            IMPORTANT:
+            The href and data-project-url should point to the SAME HTML file.
+
+            Example:
+
+            <details class="lab" data-lab="labo 23">
+                <summary>
+                    <div class="lab-title">
+                        <span class="lab-node">NODE 01</span>
+                        <strong>Labo 23</strong>
+                    </div>
+
+                    <div class="lab-summary-right">
+                        <span class="lab-count">2 projects</span>
+                        <span class="lab-chevron" aria-hidden="true"></span>
+                    </div>
+                </summary>
+
+                <ol class="project-list">
+
+                    <li class="project-item" data-search="labo 23 oefening 1">
+                        <div class="project-info">
+                            <span class="project-index">01</span>
+
+                            <div>
+                                <a
+                                    class="project-name"
+                                    href="Semester_2/Labo_23/Oefening_1/index.html"
+                                >
+                                    Oefening 1
+                                </a>
+
+                                <span class="project-path">
+                                    Semester_2/Labo_23/Oefening_1/index.html
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a
+                                class="project-open"
+                                href="Semester_2/Labo_23/Oefening_1/index.html"
+                                title="Open project"
+                            >
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_23/Oefening_1/index.html"
+                                data-project-name="Oefening 1"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+
+
+                    <li class="project-item" data-search="labo 23 oefening 2">
+                        <div class="project-info">
+                            <span class="project-index">02</span>
+
+                            <div>
+                                <a
+                                    class="project-name"
+                                    href="Semester_2/Labo_23/Oefening_2/index.html"
+                                >
+                                    Oefening 2
+                                </a>
+
+                                <span class="project-path">
+                                    Semester_2/Labo_23/Oefening_2/index.html
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="project-actions">
+                            <a
+                                class="project-open"
+                                href="Semester_2/Labo_23/Oefening_2/index.html"
+                                title="Open project"
+                            >
+                                Open
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <button
+                                class="code-button"
+                                type="button"
+                                data-project-url="Semester_2/Labo_23/Oefening_2/index.html"
+                                data-project-name="Oefening 2"
+                                title="View HTML, CSS and JavaScript"
+                            >
+                                Code
+                                <span aria-hidden="true">&lt;/&gt;</span>
+                            </button>
+                        </div>
+                    </li>
+
+                </ol>
+            </details>
+
+            ============================================================
+            END LAB TEMPLATE
+            ============================================================
+            -->
 
             <div class="empty-state" id="emptyState" hidden>
                 <span>NO_MATCH</span>
