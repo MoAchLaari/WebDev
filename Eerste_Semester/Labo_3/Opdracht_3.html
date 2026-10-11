@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Opdracht 3 - jQuery UI Accordion</title>
+</head>
+<body>
+<h1>Opdracht 3: jQuery UI Accordion Analyse</h1>
+<ul>
+    <li>
+        Elke accordion-section in de DOM-tree bestaat uit een kop-element (meestal een <code>&lt;h3&gt;</code> met een interactief kopgedeelte) direct gevolgd door een content-paneel (<code>&lt;div&gt;</code>).
+    </li>
+    <li>
+        Als je op een gesloten section klikt, krijgt die in de DOM extra CSS-klassen of style-attributen (zoals <code>ui-accordion-header-active</code>, <code>aria-expanded</code> en zichtbaarheid van het paneel), waardoor deze geopend wordt en andere gesloten raken.
+    </li>
+    <li>
+        Het HTML-bronbestand is veel eenvoudiger dan de uiteindelijke DOM-structuur: tijdens runtime voegt jQuery UI extra attributen, klassen en soms inline styles toe zodat de accordion correct werkt en reageert.
+    </li>
+</ul>
+</body>
+</html>

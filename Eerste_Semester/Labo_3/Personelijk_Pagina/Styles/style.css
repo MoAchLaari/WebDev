@@ -1,0 +1,160 @@
+/* ===== Global ===== */
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #0F1A32;
+    color: #F5F1E6;
+    margin: 0;
+    padding: 0;
+    line-height: 1.7;
+}
+
+/* ===== Header ===== */
+header {
+    background: #1E305C;
+    color: #F5F1E6;
+    text-align: center;
+    padding: 1.3rem 0 0.8rem 0;
+    box-shadow: 0 3px 14px rgba(0,0,0,0.35);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+header h1 {
+    margin-bottom: 0.18rem;
+    font-size: 2.1rem;
+    font-weight: 800;
+    color: #D4A84D;
+}
+
+/* ===== Navigation ===== */
+nav {
+    margin-top: 0.8rem;
+    margin-bottom: 0.6rem;
+}
+
+nav a {
+    color: #F5F1E6;
+    padding: 0.5em 1em;
+    margin: 0 0.4em;
+    border-radius: 18px;
+    font-weight: 600;
+    background: rgba(212,168,77,0.15);
+    text-decoration: none;
+    transition: background 0.12s, box-shadow 0.12s;
+}
+
+nav a:hover {
+    background: rgba(212,168,77,0.35);
+    color: #F5F1E6;
+    box-shadow: 0 0 6px rgba(212,168,77,0.45);
+}
+
+/* ===== Main Content ===== */
+main {
+    background: #F5F1E6;
+    color: #0F1A32;
+    max-width: 900px;
+    margin: 2.2rem auto;
+    padding: 2.2rem 2.3rem 1.8rem 2.3rem;
+    border-radius: 14px;
+    box-shadow: 0 4px 22px rgba(15, 26, 50, 0.3);
+}
+
+/* Section Titles */
+section h2,
+section h3 {
+    color: #D4A84D;
+    border-bottom: 2px solid #1E305C;
+    padding-bottom: 0.28rem;
+}
+
+/* Text + Lists */
+p,
+li {
+    font-size: 1.09rem;
+    margin-bottom: 0.5em;
+}
+
+ul {
+    list-style-type: square;
+    padding-left: 1.7rem;
+    margin-bottom: 0.6em;
+}
+
+ul img {
+    width: 160px;
+    margin: 0.6rem 0 0.2rem 0;
+    border-radius: 9px;
+    box-shadow: 0 1px 7px rgba(30,48,92,0.4);
+    border: 2px solid #D4A84D;
+}
+
+/* Links */
+a {
+    color: #1E305C;
+    text-decoration: underline dotted;
+    font-weight: 500;
+    transition: color 0.15s;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #D4A84D;
+}
+
+/* Figures */
+figure {
+    text-align: center;
+    margin: 1.5rem 0 1.7rem 0;
+}
+
+figure img {
+    width: 210px;
+    border-radius: 50%;
+    box-shadow: 0 2px 14px rgba(30,48,92,0.45);
+    border: 5px solid #D4A84D;
+}
+
+figure figcaption {
+    color: #0F1A32;
+    font-style: italic;
+    margin-top: 0.7rem;
+}
+
+
+/* ===== Footer ===== */
+footer {
+    background-color: #1E305C;
+    color: #D4A84D;
+    text-align: center;
+    padding: 1.1rem 0 1.03rem 0;
+    font-size: 1.02rem;
+    margin-top: 3rem;
+    letter-spacing: 0.05em;
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px;
+    box-shadow: 0 -2px 13px rgba(15,26,50,0.25);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 650px) {
+    main {
+        padding: 1rem 0.4rem;
+    }
+
+    header,
+    footer {
+        font-size: 0.95em;
+    }
+
+    figure img {
+        width: 150px;
+    }
+}
+
+
+/* Tabel alleen voor gegevens, niet voor de paginalay-out */
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+th, td { border: 1px solid #8b949e; padding: .65rem; text-align: left; }
+thead { background-color: #eaf0f5; }
+caption { font-weight: bold; margin-bottom: .6rem; }
