@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="53e2a2c8-7cd2-4748-b6c6-68cdda3ee1c5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Eerste_Semester/Labo_3/Personelijk_Pagina/Index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Eerste_Semester/Labo_3/Personelijk_Pagina/Index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Eerste_Semester/Labo_3/Personelijk_Pagina/Styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Eerste_Semester/Labo_3/Personelijk_Pagina/Styles/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Eerste_Semester/Labo_3/Personelijk_Pagina/hobbys.html" beforeDir="false" afterPath="$PROJECT_DIR$/Eerste_Semester/Labo_3/Personelijk_Pagina/hobbys.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Eerste_Semester/Labo_3/Personelijk_Pagina/likes.html" beforeDir="false" afterPath="$PROJECT_DIR$/Eerste_Semester/Labo_3/Personelijk_Pagina/likes.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,10 +93,23 @@
       <workItem from="1791126924299" duration="116000" />
       <workItem from="1791715791709" duration="1822000" />
       <workItem from="1791719465368" duration="212000" />
+      <workItem from="1791833574760" duration="51000" />
+      <workItem from="1792237765055" duration="484000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

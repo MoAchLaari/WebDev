@@ -3,29 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Likes - Mohammed Achraf Laari</title>
-    <link rel="stylesheet" href="Styles/style.css">
+    <meta name="description" content="Likes en interesses van Mohammed Achraf Laari.">
+    <title>Mohammed Achraf Laari | Likes</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-<header>
-    <h1>Mijn Likes</h1>
-    <nav>
-        <a href="Index.html">Terug naar Home</a> |
-        <a href="hobbys.html">Mijn hobby's</a>
-    </nav>
+<header class="site-header">
+    <div class="wrap header-inner">
+        <div>
+            <p class="eyebrow">Web Development 1 • Labo 4</p>
+            <h1>Mijn Likes</h1>
+            <p class="subtitle">Mijn favoriete interesses met afbeeldingen en externe links.</p>
+        </div>
+        <nav aria-label="Hoofdnavigatie">
+            <a href="index.html">Home</a>
+            <a href="hobbys.html">Hobby's</a>
+            <a class="active" href="likes.html">Likes</a>
+        </nav>
+    </div>
 </header>
 
-<main>
-    <ul>
-        <li><strong>Favoriete muziekgenre:</strong> White Girl Pop <br><img src="images/WhiteGirlMusic.jpg" alt="White Girl muziek"><br><a href="https://open.spotify.com/playlist/2dgtcvP8kcJIGEb01W7kQ6?si=1i-YI4frSaeq237crpH7vg" target="_blank">Luister op Spotify</a></li>
-        <li><strong>Favoriete Spel:</strong> Elden Ring <br><img src="images/EldenRing.jpg" alt="Elden Ring"><br><a href="https://ankergames.net/game/elden-ring" target="_blank">Bekijk serie</a></li>
-        <li><strong>Favoriete Book:</strong> A Song of Ice and Fire <br><img src="images/ASOIF.jpg" alt="Game of Thrones"><br><a href="https://annas-archive.gl/search?q=Game+of+Thrones&check=1" target="_blank">Lees meer</a></li>
-    </ul>
+<main class="wrap stack-layout">
+    <section class="card intro-card">
+        <p class="section-tag">Interesses</p>
+        <h2>Boeken, games en muziek</h2>
+        <p>
+            Deze pagina verzamelt drie dingen die ik erg leuk vind: fantasy-games, epische boekenreeksen en muziek om te ontspannen of te focussen.
+        </p>
+    </section>
+
+    <section class="card card-grid">
+        <article class="interest-card media-card">
+            <figure>
+                <img src="images/erdtree.jpg" alt="Donkere fantasy-afbeelding die doet denken aan Elden Ring" loading="lazy">
+            </figure>
+            <div class="card-content">
+                <h2>Elden Ring</h2>
+                <p>Ik hou van Elden Ring door de sfeer, de wereldopbouw en de uitdagende gameplay.</p>
+                <a href="https://en.bandainamcoent.eu/elden-ring/elden-ring" target="_blank" rel="noopener noreferrer">Officiële pagina bekijken</a>
+            </div>
+        </article>
+
+        <article class="interest-card media-card">
+            <figure>
+                <img src="images/asoiaf-books.jpg" alt="Stapel boeken van A Song of Ice and Fire" loading="lazy">
+            </figure>
+            <div class="card-content">
+                <h2>A Song of Ice and Fire</h2>
+                <p>Deze fantasyreeks vind ik interessant door de politieke intriges, de personages en de uitgebreide wereld.</p>
+                <a href="https://www.georgerrmartin.com/grrm_book/a-game-of-thrones/" target="_blank" rel="noopener noreferrer">Meer over de boeken</a>
+            </div>
+        </article>
+
+        <article class="interest-card media-card">
+            <figure>
+                <img src="images/listening-glow.jpg" alt="Sfeervolle afbeelding van iemand met hoofdtelefoon" loading="lazy">
+            </figure>
+            <div class="card-content">
+                <h2>Muziek en playlists</h2>
+                <p>Ik luister graag naar muziek tijdens het studeren of ontspannen. Goede playlists helpen om in de juiste sfeer te komen.</p>
+                <a href="https://open.spotify.com/" target="_blank" rel="noopener noreferrer">Luister via Spotify</a>
+            </div>
+        </article>
+    </section>
 </main>
 
-<footer>
-    <p>© 2025 Mohammed Achraf Laari</p>
+<footer class="site-footer">
+    <div class="wrap">
+        <p>© 2026 Mohammed Achraf Laari • Likespagina</p>
+    </div>
 </footer>
 </body>
 </html>
