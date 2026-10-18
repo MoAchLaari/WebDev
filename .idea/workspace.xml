@@ -7,7 +7,6 @@
     <list default="true" id="53e2a2c8-7cd2-4748-b6c6-68cdda3ee1c5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Eerste_Semester/Labo_3/Personelijk_Pagina/Index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Eerste_Semester/Labo_3/Personelijk_Pagina/Index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Eerste_Semester/Labo_3/Personelijk_Pagina/Styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Eerste_Semester/Labo_3/Personelijk_Pagina/Styles/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Eerste_Semester/Labo_3/Personelijk_Pagina/hobbys.html" beforeDir="false" afterPath="$PROJECT_DIR$/Eerste_Semester/Labo_3/Personelijk_Pagina/hobbys.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Eerste_Semester/Labo_3/Personelijk_Pagina/likes.html" beforeDir="false" afterPath="$PROJECT_DIR$/Eerste_Semester/Labo_3/Personelijk_Pagina/likes.html" afterDir="false" />
     </list>
@@ -95,6 +94,7 @@
       <workItem from="1791719465368" duration="212000" />
       <workItem from="1791833574760" duration="51000" />
       <workItem from="1792237765055" duration="484000" />
+      <workItem from="1792322353678" duration="401000" />
     </task>
     <servers />
   </component>
